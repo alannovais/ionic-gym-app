@@ -1,6 +1,15 @@
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import {
+  IonApp,
+  IonIcon,
+  IonLabel,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  setupIonicReact,
+} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { Redirect, Route } from 'react-router-dom';
 import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -12,29 +21,81 @@ import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
 
 /* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
+import '@ionic/react/css/display.css';
+import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/float-elements.css';
+import '@ionic/react/css/padding.css';
 import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
 
 /* Theme variables */
+import {
+  barbellOutline,
+  cardOutline,
+  homeOutline,
+  mailOutline,
+  statsChartOutline,
+  timerOutline,
+} from 'ionicons/icons';
+import ScheduleClass from './pages/groupClass/ScheduleClass';
+import History from './pages/history/History';
+import Messages from './pages/messages/Messages';
+import Payments from './pages/payments/Payments';
+import Shopping from './pages/shopping/Shopping';
+import Workout from './pages/workout/Workout';
 import './theme/variables.css';
+import Profile from './pages/profile/Profile';
+import ChangePassword from './pages/password/ChangePassword';
+import Routine from './pages/routine/Routine';
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/history" component={History} />
+          <Route exact path="/workout" component={Workout} />
+          <Route exact path="/payments" component={Payments} />
+          <Route exact path="/shopping" component={Shopping} />
+          <Route exact path="/messages" component={Messages} />
+          <Route exact path="/schedule" component={ScheduleClass} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/change-password" component={ChangePassword} />
+          <Route exact path="/workout/routine" component={Routine} />
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </IonRouterOutlet>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="workout" href="/workout">
+            <IonIcon icon={barbellOutline} />
+            <IonLabel>Treino</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton tab="evolution" href="/evolution">
+            <IonIcon icon={statsChartOutline} />
+            <IonLabel>Evolução</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={homeOutline} />
+            <IonLabel>Meu espaço</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton tab="history" href="/history">
+            <IonIcon icon={timerOutline} />
+            <IonLabel>Histórico</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton tab="messages" href="/messages">
+            <IonIcon icon={mailOutline} />
+            <IonLabel>Menssagens</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
