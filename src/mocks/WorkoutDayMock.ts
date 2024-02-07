@@ -22,7 +22,7 @@ export const WorkoutDayMock: IPlan[] = [
                         name: 'Press',
                         sets: 3,
                         reps: 10,
-                        weight: '-',
+                        weight: '30kg',
                         during: null,
                     },
                     {
@@ -207,6 +207,18 @@ export const WorkoutDayMock: IPlan[] = [
         id: 5,
         name: 'Rest',
         dayDefined: WeekDays[4],
+        routine: [],
+    },
+    {
+        id: 6,
+        name: 'Rest',
+        dayDefined: WeekDays[5],
+        routine: [],
+    },
+    {
+        id: 7,
+        name: 'Rest',
+        dayDefined: WeekDays[6],
         routine: [],
     },
 ];

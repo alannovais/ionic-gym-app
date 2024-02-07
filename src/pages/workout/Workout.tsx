@@ -1,20 +1,14 @@
 import {
   IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonCol,
   IonContent,
   IonGrid,
   IonPage,
-  IonRow,
+  IonRow
 } from '@ionic/react';
-import WorkoutDayComponent from '../../components/workout/WorkoutDayComponent';
+import { useHistory } from 'react-router';
 import { WeekDays } from '../../constants/Contants';
 import { WorkoutDayMock } from '../../mocks/WorkoutDayMock';
-import { useHistory } from 'react-router';
 
 const Workout: React.FC = () => {
   const weekDays = WeekDays;
@@ -36,11 +30,10 @@ const Workout: React.FC = () => {
                         fill="clear"
                         onClick={(e) => {
                           e.preventDefault();
-                          history.push('/workout/routine');
+                          history.push(`/workout/routine/${work.id}`);
                         }}>
                         <IonRow class="ion-justify-content-center">
-                          <h4>{day}</h4>
-                          <h5>{work.name}</h5>
+                          <p>{day} <br /> {work.name}</p>
                         </IonRow>
                       </IonButton>
                     ),
