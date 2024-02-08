@@ -26,7 +26,7 @@ const Routine: React.FC = () => {
       if (element?.id === Number(route.params?.id)) return element;
     }) || [],
   );
-  
+
   const getChekedExercise = (id: number) => {
     console.log('workout ', id);
   };

@@ -3,7 +3,7 @@ import {
   IonGrid,
   IonList,
   IonListHeader,
-  IonPage
+  IonPage,
 } from '@ionic/react';
 import * as moment from 'moment-timezone';
 import MonthComponent from '../../components/history/MonthComponent';

@@ -5,10 +5,12 @@ export interface ISaleItems {
   price: string | number;
   image?: string;
   description?: string;
-  quantityBySize?: [
-    {
-      size: string;
-      quantity: number;
-    },
-  ] | null;
+  quantityBySize?:
+    | [
+        {
+          size: string;
+          quantity: number;
+        },
+      ]
+    | null;
 }

@@ -1,7 +1,7 @@
 {
-    "name": "gymApp",
-    "integrations": {
-        "capacitor": {}
-    },
-    "type": "react-vite"
+  "name": "gymApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
 }

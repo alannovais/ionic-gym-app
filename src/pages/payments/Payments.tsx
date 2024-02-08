@@ -7,7 +7,7 @@ import {
   IonLabel,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from '@ionic/react';
 import { IPayments } from '../../interfaces';
 import { PaymentsMock } from '../../mocks/PaymentsMock';

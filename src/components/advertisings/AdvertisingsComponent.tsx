@@ -9,13 +9,13 @@ import '@ionic/react/css/ionic-swiper.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const AdvertisingsComponent: React.FC<any> = () => {
-    return (
-        <Swiper autoplay={true} loop={true}>
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-        </Swiper>
-    );
+  return (
+    <Swiper autoplay={true} loop={true}>
+      <SwiperSlide>Slide 1</SwiperSlide>
+      <SwiperSlide>Slide 2</SwiperSlide>
+      <SwiperSlide>Slide 3</SwiperSlide>
+    </Swiper>
+  );
 };
 
 export default AdvertisingsComponent;

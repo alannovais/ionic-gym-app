@@ -11,7 +11,7 @@ import {
   IonNote,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from '@ionic/react';
 import React from 'react';
 import { IMessage } from '../../interfaces';

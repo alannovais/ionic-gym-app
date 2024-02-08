@@ -32,7 +32,7 @@ const ChangePassword: React.FC = () => {
   const markTouched = () => {
     setIsTouched(true);
   };
-  
+
   const handlerUpdatePassword = () => {};
 
   return (
