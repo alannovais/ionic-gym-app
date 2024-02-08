@@ -38,6 +38,7 @@ const WorkoutDayComponent: React.FC<ContainerProps> = (props) => {
               ))}
               <IonCheckbox
                 style={{ width: 20, height: 20 }}
+                aria-label='check workout'
                 checked={false}
                 onClick={(e) => {
                   e.preventDefault();

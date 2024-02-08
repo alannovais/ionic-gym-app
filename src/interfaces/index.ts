@@ -8,3 +8,4 @@ export * from './IClass';
 export * from './IHistoryDay';
 export * from './IDayAccessType';
 export * from './ISaleItems';
+export * from './IPayments';

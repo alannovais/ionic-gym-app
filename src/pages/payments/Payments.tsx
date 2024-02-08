@@ -1,68 +1,25 @@
 import {
   IonContent,
-  IonGrid,
   IonHeader,
   IonItem,
   IonItemDivider,
   IonItemGroup,
   IonLabel,
   IonPage,
-  IonRow,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from '@ionic/react';
+import { IPayments } from '../../interfaces';
+import { PaymentsMock } from '../../mocks/PaymentsMock';
 
-interface IPayments {
-  id: number;
-  name: string;
-  amount: number;
-  date: string;
-  status: string;
-}
 const Payments: React.FC = () => {
-  const payments: IPayments[] = [
-    {
-      id: 1,
-      name: '<NAME>',
-      amount: 100,
-      date: '2021-01-01',
-      status: 'TO_PAY',
-    },
-    {
-      id: 2,
-      name: '<NAME>',
-      amount: 100,
-      date: '2021-01-01',
-      status: 'TO_PAY',
-    },
-    {
-      id: 3,
-      name: '<NAME>',
-      amount: 100,
-      date: '2021-01-01',
-      status: 'TO_PAY',
-    },
-    {
-      id: 4,
-      name: '<NAME>',
-      amount: 100,
-      date: '2021-01-01',
-      status: 'TO_PAY',
-    },
-    {
-      id: 5,
-      name: '<NAME>',
-      amount: 100,
-      date: '2021-01-01',
-      status: 'TO_PAY',
-    },
-  ];
+  const payments: IPayments[] = PaymentsMock;
   return (
     <IonPage>
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Payments</IonTitle>
+            <IonTitle size="large">Pagamentos</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonItemGroup>

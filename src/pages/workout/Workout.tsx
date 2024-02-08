@@ -4,7 +4,7 @@ import {
   IonContent,
   IonGrid,
   IonPage,
-  IonRow
+  IonRow,
 } from '@ionic/react';
 import { useHistory } from 'react-router';
 import { WeekDays } from '../../constants/Contants';
@@ -17,8 +17,13 @@ const Workout: React.FC = () => {
   return (
     <IonPage>
       <IonContent scrollY={true}>
-        <IonGrid>
-          <IonRow class="ion-align-items-center">
+        <IonGrid
+          style={{
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+          }}>
+          <IonRow>
             {weekDays.map((day, index) => (
               <IonCol size="4" key={index}>
                 {workoutDay.map(
@@ -33,7 +38,9 @@ const Workout: React.FC = () => {
                           history.push(`/workout/routine/${work.id}`);
                         }}>
                         <IonRow class="ion-justify-content-center">
-                          <p>{day} <br /> {work.name}</p>
+                          <p>
+                            {day} <br /> {work.name}
+                          </p>
                         </IonRow>
                       </IonButton>
                     ),

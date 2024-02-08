@@ -1,9 +1,7 @@
 import {
-  IonButton,
   IonContent,
   IonGrid,
   IonHeader,
-  IonIcon,
   IonItem,
   IonItemOption,
   IonItemOptions,
@@ -12,19 +10,15 @@ import {
   IonList,
   IonNote,
   IonPage,
-  IonRow,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from '@ionic/react';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { IMessage } from '../../interfaces';
 import { MessageMock } from '../../mocks/MessageMock';
-import { listCircleOutline } from 'ionicons/icons';
 
 const Messages: React.FC = () => {
   const [messages, setMessages] = React.useState<IMessage[]>(MessageMock);
-  const history = useHistory();
   const deleteMessages = (id: number) => {
     //Todo remove
   };

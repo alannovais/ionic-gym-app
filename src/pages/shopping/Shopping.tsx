@@ -9,59 +9,15 @@ import {
   IonIcon,
   IonImg,
   IonPage,
-  IonRow
+  IonRow,
 } from '@ionic/react';
 import { bagAddOutline } from 'ionicons/icons';
 import { ISaleItems } from '../../interfaces';
 import teste from '../groupClass/teste.jpg';
+import { SalesMock } from '../../mocks/SalesMock';
 
 const Shopping: React.FC<any> = () => {
-  const itemsToSales: ISaleItems[] = [
-    {
-      id: 1,
-      name: 'T-shirt',
-      type: 'clothes',
-      price: 30,
-      image: '../groupClass/teste.jpg',
-      description: 'T-shirt dry',
-      quantityBySize: [
-        {
-          size: 'XS',
-          quantity: 1,
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: 'Avaliable Physical',
-      type: 'Service',
-      price: 10,
-      image: '../groupClass/teste.jpg',
-      description:
-        'Avaliable Physical will check your currently conditin to make practice exercises',
-      quantityBySize: null,
-    },
-    {
-      id: 3,
-      name: 'Avaliable Nutrition',
-      type: 'Service',
-      price: 10,
-      image: '../groupClass/teste.jpg',
-      description:
-        'Avaliable Nutrition will give to you straight ahead path to earn your dreams',
-      quantityBySize: null,
-    },
-    {
-      id: 4,
-      name: 'Avaliable Physical + Workout plan',
-      type: 'Service',
-      price: 25,
-      image: '../groupClass/teste.jpg',
-      description:
-        'Avaliable Nutrition will give to you straight ahead path to earn your dreams',
-      quantityBySize: null,
-    },
-  ];
+  const itemsToSales: ISaleItems[] = SalesMock;
 
   const poupToBuyItem = (id: Number) => {
     console.log(id);
@@ -72,8 +28,8 @@ const Shopping: React.FC<any> = () => {
       <IonContent scrollY>
         <IonRow>
           {itemsToSales.map((item, index) => (
-            <IonCol>
-              <IonCard key={index}>
+            <IonCol key={index}>
+              <IonCard>
                 <IonCardHeader>
                   <IonCardTitle>
                     <IonRow class="ion-justify-content-center">
