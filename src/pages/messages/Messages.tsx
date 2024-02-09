@@ -16,15 +16,21 @@ import {
 import React from 'react';
 import { IMessage } from '../../interfaces';
 import { MessageService } from '../../services/MessageService';
+import { MessageAction } from '../../store/actions/MessagesActions';
+import { useDispatch } from 'react-redux';
 
 const Messages: React.FC = () => {
   const [messages, setMessages] = React.useState<IMessage[]>([] as IMessage[]);
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
     const loadData = async () => {
       const response = await MessageService.getMessages();
       setMessages(response);
     };
+    setTimeout(() => {
+      dispatch(MessageAction.loadMessages())
+    }, 1000);
     loadData();
   });
 

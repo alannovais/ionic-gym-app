@@ -3,8 +3,11 @@ import {
   IonCol,
   IonContent,
   IonGrid,
+  IonHeader,
   IonPage,
   IonRow,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/react';
 import React from 'react';
 import { useHistory } from 'react-router';
@@ -28,6 +31,11 @@ const Workout: React.FC = () => {
   return (
     <IonPage>
       <IonContent scrollY={true}>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle>Planos da semana</IonTitle>
+          </IonToolbar>
+        </IonHeader>
         <IonGrid
           style={{
             height: '100%',
@@ -36,13 +44,18 @@ const Workout: React.FC = () => {
           }}>
           <IonRow>
             {weekDays.current.map((day, index) => (
-              <IonCol size="4" key={index}>
+              <IonCol size="4" key={index} style={{ paddingRight: '0rem' }}>
                 {workoutDay.map(
                   (work, wIndex) =>
                     day === work.dayDefined && (
                       <IonButton
                         key={wIndex}
-                        style={{ height: 135, width: 135 }}
+                        style={{
+                          height: 130,
+                          width: 110,
+                          border: '1px solid',
+                          borderColor: 'red',
+                        }}
                         fill="clear"
                         onClick={(e) => {
                           e.preventDefault();

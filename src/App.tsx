@@ -31,22 +31,22 @@ import '@ionic/react/css/text-transformation.css';
 /* Theme variables */
 import {
   barbellOutline,
-  cardOutline,
   homeOutline,
   mailOutline,
   statsChartOutline,
-  timerOutline,
+  timerOutline
 } from 'ionicons/icons';
+import Evolution from './pages/evolution/Evolution';
 import ScheduleClass from './pages/groupClass/ScheduleClass';
 import History from './pages/history/History';
 import Messages from './pages/messages/Messages';
+import ChangePassword from './pages/password/ChangePassword';
 import Payments from './pages/payments/Payments';
+import Profile from './pages/profile/Profile';
+import Routine from './pages/routine/Routine';
 import Shopping from './pages/shopping/Shopping';
 import Workout from './pages/workout/Workout';
 import './theme/variables.css';
-import Profile from './pages/profile/Profile';
-import ChangePassword from './pages/password/ChangePassword';
-import Routine from './pages/routine/Routine';
 
 setupIonicReact();
 
@@ -62,6 +62,7 @@ const App: React.FC = () => (
           <Route exact path="/shopping" component={Shopping} />
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/schedule" component={ScheduleClass} />
+          <Route exact path="/evolution" component={Evolution} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/change-password" component={ChangePassword} />
           <Route exact path="/workout/routine/:id" component={Routine} />
