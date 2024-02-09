@@ -6,13 +6,24 @@ import {
   IonPage,
   IonRow,
 } from '@ionic/react';
+import React from 'react';
 import { useHistory } from 'react-router';
 import { WeekDays } from '../../constants/Contants';
-import { WorkoutDayMock } from '../../mocks/WorkoutDayMock';
+import { IPlan } from '../../interfaces';
+import { WorkoutService } from '../../services/WorkoutService';
 
 const Workout: React.FC = () => {
-  const weekDays = WeekDays;
-  const workoutDay = WorkoutDayMock;
+  const weekDays = React.useRef(WeekDays);
+  const [workoutDay, setWorkoutDay] = React.useState<IPlan[]>([] as IPlan[]);
+
+  React.useEffect(() => {
+    const loadData = async () => {
+      const response = await WorkoutService.getAll();
+      setWorkoutDay(response);
+    };
+    loadData();
+  });
+
   const history = useHistory();
   return (
     <IonPage>
@@ -24,7 +35,7 @@ const Workout: React.FC = () => {
             alignItems: 'center',
           }}>
           <IonRow>
-            {weekDays.map((day, index) => (
+            {weekDays.current.map((day, index) => (
               <IonCol size="4" key={index}>
                 {workoutDay.map(
                   (work, wIndex) =>

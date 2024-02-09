@@ -1,6 +1,6 @@
 export * from './IExercises';
 export * from './IMuscleRoutine';
-export * from './IWorkout';
+export * from './IPlan';
 export * from './ITeacher';
 export * from './IGroupClass';
 export * from './IMessage';

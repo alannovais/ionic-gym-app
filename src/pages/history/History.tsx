@@ -6,12 +6,23 @@ import {
   IonPage,
 } from '@ionic/react';
 import * as moment from 'moment-timezone';
+import React from 'react';
 import MonthComponent from '../../components/history/MonthComponent';
 import { IHistoryDay } from '../../interfaces';
-import { HisotryMock } from '../../mocks/HistoryMock';
+import { HistoryService } from '../../services/HistoryService';
 
 const History: React.FC = () => {
-  const history: IHistoryDay[] = HisotryMock;
+  const [history, setHistory] = React.useState<IHistoryDay[]>(
+    [] as IHistoryDay[],
+  );
+
+  React.useEffect(() => {
+    const loadData = async () => {
+      const response = await HistoryService.getHistory();
+      setHistory(response);
+    };
+    loadData();
+  });
 
   let teste = moment().subtract(1, 'month').startOf('month').format('MMMM');
   return (

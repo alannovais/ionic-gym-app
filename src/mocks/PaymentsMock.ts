@@ -27,13 +27,13 @@ export const PaymentsMock: IPayments[] = [
     name: '<NAME>',
     amount: 100,
     date: '2021-01-01',
-    status: 'TO_PAY',
+    status: 'PAID',
   },
   {
     id: 5,
     name: '<NAME>',
     amount: 100,
     date: '2021-01-01',
-    status: 'TO_PAY',
+    status: 'PAID',
   },
 ];

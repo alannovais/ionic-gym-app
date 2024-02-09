@@ -15,10 +15,19 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { IMessage } from '../../interfaces';
-import { MessageMock } from '../../mocks/MessageMock';
+import { MessageService } from '../../services/MessageService';
 
 const Messages: React.FC = () => {
-  const [messages, setMessages] = React.useState<IMessage[]>(MessageMock);
+  const [messages, setMessages] = React.useState<IMessage[]>([] as IMessage[]);
+
+  React.useEffect(() => {
+    const loadData = async () => {
+      const response = await MessageService.getMessages();
+      setMessages(response);
+    };
+    loadData();
+  });
+
   const deleteMessages = (id: number) => {
     //Todo remove
   };

@@ -12,12 +12,23 @@ import {
   IonRow,
 } from '@ionic/react';
 import { bagAddOutline } from 'ionicons/icons';
+import React from 'react';
 import { ISaleItems } from '../../interfaces';
+import { SalesService } from '../../services/SalesService';
 import teste from '../groupClass/teste.jpg';
-import { SalesMock } from '../../mocks/SalesMock';
 
 const Shopping: React.FC<any> = () => {
-  const itemsToSales: ISaleItems[] = SalesMock;
+  const [itemsToSales, setItemToSales] = React.useState<ISaleItems[]>(
+    [] as ISaleItems[],
+  );
+
+  React.useEffect(() => {
+    const loadData = async () => {
+      const response = await SalesService.getItems();
+      setItemToSales(response);
+    };
+    loadData();
+  });
 
   const poupToBuyItem = (id: Number) => {
     console.log(id);

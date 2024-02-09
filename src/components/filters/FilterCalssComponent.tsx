@@ -1,6 +1,6 @@
 import { IonItem, IonList, IonSelect, IonSelectOption } from '@ionic/react';
-import { IClass, ITeacher } from '../../interfaces';
 import React from 'react';
+import { IClass, ITeacher } from '../../interfaces';
 
 const compareWith = (o1: ITeacher | IClass, o2: ITeacher | IClass) => {
   if (!o1 || !o2) {
@@ -20,8 +20,8 @@ interface ParamsProps {
   value: ITeacher[] | IClass[];
 }
 export const FilterCalssComponent: React.FC<ParamsProps> = (props) => {
-  const [value, setValue] = React.useState<ITeacher[] | IClass[]>(props.value);
-  const label = props.label;
+  const { label, value } = props;
+
   return (
     <IonList>
       <IonItem>

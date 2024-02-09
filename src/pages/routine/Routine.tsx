@@ -12,28 +12,61 @@ import {
   IonTitle,
   IonToggle,
   IonToolbar,
+  useIonAlert,
 } from '@ionic/react';
-import { useRef } from 'react';
+import React from 'react';
 import { useRouteMatch } from 'react-router';
 import WorkoutDayComponent from '../../components/workout/WorkoutDayComponent';
-import { WorkoutDayMock } from '../../mocks/WorkoutDayMock';
+import { IPlan } from '../../interfaces';
+import { WorkoutService } from '../../services/WorkoutService';
+
+interface temp {
+  workout: number;
+  complete: boolean;
+  day: Date;
+}
 
 const Routine: React.FC = () => {
-  const workoutDay = WorkoutDayMock;
   const route = useRouteMatch();
-  const routineLoad = useRef(
-    workoutDay.find((element) => {
-      if (element?.id === Number(route.params?.id)) return element;
-    }) || [],
-  );
+  const [loadRoutine, setLoadRoutine] = React.useState<IPlan>({} as IPlan);
+  const [workoutCompleted, setWorkoutCompleted] = React.useState(false);
+  const [presentAlert] = useIonAlert();
+
+  React.useEffect(() => {
+    const loadData = async () => {
+      setLoadRoutine(await WorkoutService.getWorkoutDay(route.params?.id));
+    };
+    loadData();
+  }, []);
 
   const getChekedExercise = (id: number) => {
+    //save on store
     console.log('workout ', id);
   };
 
-  const handleFinishWorkout = () => {
-    //open modal to confirm, after toggle change;
-    return false;
+  const handleFinishWorkout = (data: any) => {
+    data.preventDefault();
+    data.stopPropagation();
+    presentAlert({
+      header: workoutCompleted ? 'Concluir treino' : 'Reabrir treino',
+      subHeader: workoutCompleted
+        ? `Treino finalizado?`
+        : 'Deseja regressar o treino?',
+      message: `${loadRoutine.dayDefined} - ${loadRoutine.name}`,
+      buttons: [
+        { text: 'Sim', handler: () => toggleClass(data) },
+        { text: 'Não', handler: () => undefined },
+      ],
+    });
+  };
+
+  const toggleClass = (event: Event) => {
+    console.log({
+      workout: route.params?.id,
+      complete: !workoutCompleted,
+      day: new Date(),
+    });
+    setWorkoutCompleted(!workoutCompleted);
   };
 
   return (
@@ -41,25 +74,27 @@ const Routine: React.FC = () => {
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Segunda - Plan 1</IonTitle>
+            <IonTitle size="large">{`${loadRoutine.dayDefined} - ${loadRoutine.name}`}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonCard>
-          {routineLoad.current?.routine.length > 0 && (
+          {loadRoutine?.routine?.length > 0 && (
             <IonCardContent>
               <IonGrid>
                 <IonRow class="ion-justify-content-end">
-                  <IonToggle checked={handleFinishWorkout()}>
+                  <IonToggle
+                    checked={workoutCompleted}
+                    onIonChange={handleFinishWorkout}>
                     Finalize seu treino
                   </IonToggle>
                 </IonRow>
                 <IonList lines="full">
-                  {routineLoad.current.routine.map((routine, rIndex) => (
+                  {loadRoutine.routine.map((routine, rIndex) => (
                     <IonItem key={rIndex} style={{}}>
                       <IonLabel>
                         {routine.muscle}
                         <WorkoutDayComponent
-                          routine={routine}
+                          exerciseList={routine.exercises}
                           exerciseId={(e: number) => getChekedExercise(e)}
                         />
                       </IonLabel>

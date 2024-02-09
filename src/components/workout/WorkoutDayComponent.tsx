@@ -1,13 +1,13 @@
-import { IonCheckbox, IonCol, IonGrid, IonLabel, IonRow } from '@ionic/react';
-import { IClass, IExercise, IMuscleRoutine } from '../../interfaces';
+import { IonCheckbox, IonCol, IonGrid, IonRow } from '@ionic/react';
+import { IExercise } from '../../interfaces';
 
 interface ContainerProps {
-  routine: IMuscleRoutine;
+  exerciseList: IExercise[];
   exerciseId: Function;
 }
 
 const WorkoutDayComponent: React.FC<ContainerProps> = (props) => {
-  const { routine, exerciseId } = props;
+  const { exerciseList, exerciseId } = props;
 
   const checkExercise = (id: number) => {
     exerciseId(id);
@@ -25,7 +25,7 @@ const WorkoutDayComponent: React.FC<ContainerProps> = (props) => {
 
   return (
     <IonGrid>
-      {routine.exercises.map((exercise: IExercise, eIndex: any) => (
+      {exerciseList.map((exercise: IExercise, eIndex: any) => (
         <IonRow
           key={eIndex}
           class="ion-justify-content-between ion-align-items-center">
