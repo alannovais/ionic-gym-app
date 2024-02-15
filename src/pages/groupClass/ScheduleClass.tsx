@@ -12,35 +12,31 @@ import {
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import React from 'react';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { FilterCalssComponent } from '../../components';
 import ListClassComponent from '../../components/listClass/ListClassComponent';
-import { IClass, ITeacher } from '../../interfaces';
-import { IGroupClass } from '../../interfaces/IGroupClass';
+import { IClass } from '../../interfaces/IClass';
 import { ClassesGroupService } from '../../services/ClassesGroupService';
 import { TeacherService } from '../../services/TeacherService';
+import { RootState } from '../../store';
+import { AppDispatch } from '../../store/store';
 
 interface ComponentProps {}
 
 const ScheduleClass: React.FC<ComponentProps> = (props) => {
-  const [classes, setClasses] = React.useState<IGroupClass[]>(
-    [] as IGroupClass[],
-  );
-
-  const [teachers, setTeachers] = React.useState<ITeacher[]>([] as ITeacher[]);
-  const [classesFilter, setClassesFilter] = React.useState<IClass[]>(
-    [] as IClass[],
-  );
-
   const [presentAlert] = useIonAlert();
+  const dispatch = useDispatch<AppDispatch>();
+  const selector: TypedUseSelectorHook<RootState> = useSelector;
+
+  const classes = selector((state) => state.groupClasses.data);
+  const classesFilter = selector((state) => state.classes.data);
+  const teachersFilter = selector((state) => state.teachers.data);
 
   React.useEffect(() => {
-    const loadData = async () => {
-      setTeachers(await TeacherService.getTeachers());
-      setClasses(await ClassesGroupService.getClasses());
-      setClassesFilter(await ClassesGroupService.listClasses());
-    };
-    loadData();
-  }, []);
+    dispatch(ClassesGroupService.get());
+    dispatch(ClassesGroupService.listClasses());
+    dispatch(TeacherService.get());
+  }, [classes, classesFilter, teachersFilter, dispatch]);
 
   const classPresence = (id: number) => {
     console.log(id);
@@ -51,7 +47,7 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
     //Todo Clear the filters
   };
 
-  const setupPresence = (data: IGroupClass) => {
+  const setupPresence = (data: IClass) => {
     presentAlert({
       header: 'Agendamento da aula',
       subHeader: `Confirmar sua presença na aula?`,
@@ -72,7 +68,10 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
         </IonHeader>
         <IonGrid>
           <IonRow class="ion-justify-content-around">
-            <FilterCalssComponent label={'Professores'} value={teachers} />
+            <FilterCalssComponent
+              label={'Professores'}
+              value={teachersFilter}
+            />
             <FilterCalssComponent label={'Aulas'} value={classesFilter} />
             <IonButton
               fill="clear"

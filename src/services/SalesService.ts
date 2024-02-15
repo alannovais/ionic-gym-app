@@ -1,16 +1,12 @@
-import axios from 'axios';
-import { SalesMock } from '../mocks/SalesMock';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ISaleItems } from '../interfaces';
+import { SalesMock } from '../mocks/SalesMock';
+import api from './api';
 
 export namespace SalesService {
-  export const getItems = async (): Promise<ISaleItems[]> => {
-    try {
-      let response = await axios.get<ISaleItems[]>('');
-      response.data = SalesMock;
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
-  };
+  export const get = createAsyncThunk('GET/SALES', async () => {
+    let response = await api.get<ISaleItems[]>('');
+    response.data = SalesMock;
+    return response.data;
+  });
 }

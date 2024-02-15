@@ -1,6 +1,6 @@
-import { IGroupClass } from '../interfaces/IGroupClass';
+import { IClass } from '../interfaces/IClass';
 
-export const ClassesMock: IGroupClass[] = [
+export const ClassesMock: IClass[] = [
   {
     id: 1,
     name: 'Power Step',

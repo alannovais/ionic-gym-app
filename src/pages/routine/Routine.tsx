@@ -15,10 +15,12 @@ import {
   useIonAlert,
 } from '@ionic/react';
 import React from 'react';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router';
 import WorkoutDayComponent from '../../components/workout/WorkoutDayComponent';
-import { IPlan } from '../../interfaces';
 import { WorkoutService } from '../../services/WorkoutService';
+import { RootState } from '../../store';
+import { AppDispatch } from '../../store/store';
 
 interface temp {
   workout: number;
@@ -28,15 +30,14 @@ interface temp {
 
 const Routine: React.FC = () => {
   const route = useRouteMatch();
-  const [loadRoutine, setLoadRoutine] = React.useState<IPlan>({} as IPlan);
   const [workoutCompleted, setWorkoutCompleted] = React.useState(false);
   const [presentAlert] = useIonAlert();
+  const dispatch = useDispatch<AppDispatch>();
+  const selector: TypedUseSelectorHook<RootState> = useSelector;
+  const loadRoutine = selector((state) => state.workout.data);
 
   React.useEffect(() => {
-    const loadData = async () => {
-      setLoadRoutine(await WorkoutService.getWorkoutDay(route.params?.id));
-    };
-    loadData();
+    dispatch(WorkoutService.getWorkoutDay(route.params?.id));
   }, []);
 
   const getChekedExercise = (id: number) => {

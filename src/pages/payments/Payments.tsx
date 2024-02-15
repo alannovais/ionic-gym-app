@@ -10,20 +10,20 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import React from 'react';
-import { IPayments } from '../../interfaces';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { PaymentsService } from '../../services/PaymentsService';
+import { RootState } from '../../store';
+import { AppDispatch } from '../../store/store';
 
 const Payments: React.FC = () => {
-  const [payments, setPayments] = React.useState<IPayments[]>(
-    [] as IPayments[],
-  );
+  const selector: TypedUseSelectorHook<RootState> = useSelector;
+  const dispatch = useDispatch<AppDispatch>();
+  const payments = selector((state) => state.payments.data);
+
   React.useEffect(() => {
-    const loadData = async () => {
-      const response = await PaymentsService.getPayments();
-      setPayments(response);
-    };
-    loadData();
-  });
+    dispatch(PaymentsService.get());
+  }, [payments, dispatch]);
+
   return (
     <IonPage>
       <IonContent scrollY>

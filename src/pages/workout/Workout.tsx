@@ -10,22 +10,22 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import React from 'react';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { WeekDays } from '../../constants/Contants';
-import { IPlan } from '../../interfaces';
-import { WorkoutService } from '../../services/WorkoutService';
+import { PlanService } from '../../services/PlanService';
+import { RootState } from '../../store';
+import { AppDispatch } from '../../store/store';
 
 const Workout: React.FC = () => {
   const weekDays = React.useRef(WeekDays);
-  const [workoutDay, setWorkoutDay] = React.useState<IPlan[]>([] as IPlan[]);
+  const dispatch = useDispatch<AppDispatch>();
+  const selector: TypedUseSelectorHook<RootState> = useSelector;
+  const plan = selector((state) => state.plans.data);
 
   React.useEffect(() => {
-    const loadData = async () => {
-      const response = await WorkoutService.getAll();
-      setWorkoutDay(response);
-    };
-    loadData();
-  });
+    dispatch(PlanService.getAll());
+  }, [plan, dispatch]);
 
   const history = useHistory();
   return (
@@ -45,7 +45,7 @@ const Workout: React.FC = () => {
           <IonRow>
             {weekDays.current.map((day, index) => (
               <IonCol size="4" key={index} style={{ paddingRight: '0rem' }}>
-                {workoutDay.map(
+                {plan.map(
                   (work, wIndex) =>
                     day === work.dayDefined && (
                       <IonButton

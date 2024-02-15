@@ -1,30 +1,21 @@
-import axios from 'axios';
-import { IClass, IGroupClass } from '../interfaces';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { IClass } from '../interfaces';
 import { ClassesMock } from '../mocks/GroupClassMock';
+import api from './api';
 
 export namespace ClassesGroupService {
-  export const getClasses = async (): Promise<IGroupClass[]> => {
-    try {
-      let response = await axios.get<IGroupClass[]>('');
-      response.data = ClassesMock;
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
-  };
+  export const get = createAsyncThunk('GET/CLASSES', async () => {
+    let response = await api.get<IClass[]>('');
+    response.data = ClassesMock;
+    return response.data;
+  });
 
-  export const listClasses = async (): Promise<IClass[]> => {
-    try {
-      let response = await axios.get<IClass[]>('');
-      response.data = ClassesMock.filter((e) => ({
-        id: e.id,
-        name: e.name,
-      }));
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
-  };
+  export const listClasses = createAsyncThunk('GET/LIST_CLASSES', async () => {
+    let response = await api.get<IClass[]>('');
+    response.data = ClassesMock.filter((e) => ({
+      id: e.id,
+      name: e.name,
+    }));
+    return response.data;
+  });
 }

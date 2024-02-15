@@ -14,25 +14,20 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import React from 'react';
-import { IMessage } from '../../interfaces';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { MessageService } from '../../services/MessageService';
-import { MessageAction } from '../../store/actions/MessagesActions';
-import { useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { AppDispatch } from '../../store/store';
 
 const Messages: React.FC = () => {
-  const [messages, setMessages] = React.useState<IMessage[]>([] as IMessage[]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>();
+  const selector: TypedUseSelectorHook<RootState> = useSelector;
+
+  const messages = selector((state) => state.messages.data);
 
   React.useEffect(() => {
-    const loadData = async () => {
-      const response = await MessageService.getMessages();
-      setMessages(response);
-    };
-    setTimeout(() => {
-      dispatch(MessageAction.loadMessages())
-    }, 1000);
-    loadData();
-  });
+    dispatch(MessageService.get());
+  }, [messages, dispatch]);
 
   const deleteMessages = (id: number) => {
     //Todo remove

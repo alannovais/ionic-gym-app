@@ -1,16 +1,15 @@
-import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IHistoryDay } from '../interfaces';
 import { HisotryMock } from '../mocks/HistoryMock';
+import api from './api';
 
 export namespace HistoryService {
-  export const getHistory = async (): Promise<IHistoryDay[]> => {
-    try {
-      let response = await axios.get<IHistoryDay[]>('');
+  export const get = createAsyncThunk(
+    'GET/HISTORY',
+    async (): Promise<IHistoryDay[]> => {
+      let response = await api.get<IHistoryDay[]>('');
       response.data = HisotryMock;
       return response.data;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
-  };
+    },
+  );
 }

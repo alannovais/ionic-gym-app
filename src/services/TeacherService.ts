@@ -1,16 +1,12 @@
-import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ITeacher } from '../interfaces';
 import { TeachersMock } from '../mocks/TeachersMock';
+import api from './api';
 
 export namespace TeacherService {
-  export const getTeachers = async (): Promise<ITeacher[]> => {
-    try {
-      let response = await axios.get<ITeacher[]>('');
-      response.data = TeachersMock;
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
-  };
+  export const get = createAsyncThunk('GET/TEACHERS', async () => {
+    let response = await api.get<ITeacher[]>('');
+    response.data = TeachersMock;
+    return response.data;
+  });
 }

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers';
+import rootReducer from '.';
 
 const store = configureStore({
   reducer: rootReducer,
@@ -11,6 +11,5 @@ const store = configureStore({
 //     store.replaceReducer(newRootReducer);
 //   });
 // }
-
 export type AppDispatch = typeof store.dispatch;
 export default store;

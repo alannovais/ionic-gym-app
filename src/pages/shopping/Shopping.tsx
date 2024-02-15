@@ -13,22 +13,20 @@ import {
 } from '@ionic/react';
 import { bagAddOutline } from 'ionicons/icons';
 import React from 'react';
-import { ISaleItems } from '../../interfaces';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { SalesService } from '../../services/SalesService';
+import { RootState } from '../../store';
+import { AppDispatch } from '../../store/store';
 import teste from '../groupClass/teste.jpg';
 
 const Shopping: React.FC<any> = () => {
-  const [itemsToSales, setItemToSales] = React.useState<ISaleItems[]>(
-    [] as ISaleItems[],
-  );
+  const dispatch = useDispatch<AppDispatch>();
+  const selector: TypedUseSelectorHook<RootState> = useSelector;
+  const itemsToSales = selector((state) => state.sales.data);
 
   React.useEffect(() => {
-    const loadData = async () => {
-      const response = await SalesService.getItems();
-      setItemToSales(response);
-    };
-    loadData();
-  });
+    dispatch(SalesService.get());
+  }, [itemsToSales, dispatch]);
 
   const poupToBuyItem = (id: Number) => {
     console.log(id);

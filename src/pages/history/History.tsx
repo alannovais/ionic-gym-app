@@ -7,22 +7,20 @@ import {
 } from '@ionic/react';
 import * as moment from 'moment-timezone';
 import React from 'react';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import MonthComponent from '../../components/history/MonthComponent';
-import { IHistoryDay } from '../../interfaces';
 import { HistoryService } from '../../services/HistoryService';
+import { RootState } from '../../store';
+import { AppDispatch } from '../../store/store';
 
 const History: React.FC = () => {
-  const [history, setHistory] = React.useState<IHistoryDay[]>(
-    [] as IHistoryDay[],
-  );
+  const selector: TypedUseSelectorHook<RootState> = useSelector;
+  const history = selector((state) => state.history.data);
+  const dispatch = useDispatch<AppDispatch>();
 
   React.useEffect(() => {
-    const loadData = async () => {
-      const response = await HistoryService.getHistory();
-      setHistory(response);
-    };
-    loadData();
-  });
+    dispatch(HistoryService.get());
+  }, [history, dispatch]);
 
   let teste = moment().subtract(1, 'month').startOf('month').format('MMMM');
   return (
