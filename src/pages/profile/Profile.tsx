@@ -14,9 +14,15 @@ import {
 } from '@ionic/react';
 import './Porfile.css';
 import { useHistory } from 'react-router';
+import { TypedUseSelectorHook } from 'react-redux';
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
 
 const Profile: React.FC = () => {
   const history = useHistory();
+  const selector: TypedUseSelectorHook<RootState> = useSelector;
+  const user = selector((state) => state.user.data);
+
   return (
     <IonPage>
       <IonHeader translucent>
@@ -43,7 +49,7 @@ const Profile: React.FC = () => {
           </IonRow>
           <IonRow class="ion-justify-content-center">
             <IonLabel>
-              <p style={{ fontWeight: 'bold' }}>Olá, Alan!</p>
+              <p style={{ fontWeight: 'bold' }}>Olá, {user.name}!</p>
             </IonLabel>
           </IonRow>
           <IonRow>

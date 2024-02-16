@@ -16,9 +16,9 @@ interface UserStore {
 const initialState: UserStore = {
   data: {
     id: 0,
-    name: 'Alan',
+    name: 'Alan Novais',
     email: '',
-    password: '',
+    password: 'teste123',
     role: '',
     token: '',
   },

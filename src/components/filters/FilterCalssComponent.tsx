@@ -27,7 +27,7 @@ export const FilterCalssComponent: React.FC<ParamsProps> = (props) => {
       <IonItem>
         <IonSelect
           aria-label="Food"
-          label={label}
+          placeholder={label}
           compareWith={compareWith}
           onIonChange={(ev) =>
             console.log('Current value:', JSON.stringify(ev.detail.value))
