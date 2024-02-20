@@ -7,14 +7,29 @@ import 'swiper/css/zoom';
 import '@ionic/react/css/ionic-swiper.css';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { IonContent, IonGrid } from '@ionic/react';
+import './index.css';
 
-const AdvertisingsComponent: React.FC<any> = () => {
+interface ComponentProps {
+  heigthSlide: number;
+  backgroundColor: string;
+}
+
+const AdvertisingsComponent: React.FC<ComponentProps> = (props) => {
+  let { heigthSlide, backgroundColor } = props;
+  heigthSlide = 200;
+  backgroundColor = 'red';
+
   return (
-    <Swiper autoplay={true} loop={true}>
-      <SwiperSlide>Slide 1</SwiperSlide>
+    <IonGrid>
+    <Swiper autoplay={true} loop={true}
+      style={{ height: heigthSlide,
+      backgroundColor: backgroundColor }}>
+      <SwiperSlide className="swiper-fixed-width-300">Slide 1</SwiperSlide>
       <SwiperSlide>Slide 2</SwiperSlide>
       <SwiperSlide>Slide 3</SwiperSlide>
     </Swiper>
+    </IonGrid>
   );
 };
 

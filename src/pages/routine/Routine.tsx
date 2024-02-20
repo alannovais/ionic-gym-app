@@ -34,7 +34,7 @@ const Routine: React.FC = () => {
   const [presentAlert] = useIonAlert();
   const dispatch = useDispatch<AppDispatch>();
   const selector: TypedUseSelectorHook<RootState> = useSelector;
-  const loadRoutine = selector((state) => state.workout.data);
+  const loadRoutine = selector((state) => state.workouts.data);
 
   React.useEffect(() => {
     dispatch(WorkoutService.getWorkoutDay(route.params?.id));

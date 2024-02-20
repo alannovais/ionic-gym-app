@@ -36,7 +36,7 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
     dispatch(ClassesGroupService.get());
     dispatch(ClassesGroupService.listClasses());
     dispatch(TeacherService.get());
-  }, [classes, classesFilter, teachersFilter, dispatch]);
+  }, []);
 
   const classPresence = (id: number) => {
     console.log(id);

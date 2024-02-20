@@ -25,7 +25,7 @@ const Workout: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(PlanService.getAll());
-  }, [plan, dispatch]);
+  }, []);
 
   const history = useHistory();
   return (
