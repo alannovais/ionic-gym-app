@@ -8,6 +8,7 @@ import {
   IonContent,
   IonIcon,
   IonImg,
+  IonLabel,
   IonPage,
   IonRow,
 } from '@ionic/react';
@@ -18,6 +19,7 @@ import { SalesService } from '../../services/SalesService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
 import teste from '../groupClass/teste.jpg';
+import '../../theme/variables.css';
 
 const Shopping: React.FC<any> = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -45,16 +47,22 @@ const Shopping: React.FC<any> = () => {
                       <IonImg
                         src={teste}
                         alt="product image"
-                        style={{ heigth: '20rem', width: '15rem' }}
+                        style={{ heigth: '15rem', width: '15rem' }}
                       />
                     </IonRow>
                   </IonCardTitle>
                 </IonCardHeader>
                 <IonCardContent>
-                  <p style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-                    {item.name}
-                  </p>
-                  <p>{item.description}</p>
+                  <IonRow>
+                    <IonLabel class="text-card-title margin-bottom-8">
+                      {item.name}
+                    </IonLabel>
+                  </IonRow>
+                  <IonRow>
+                    <IonLabel class="text-secondary">
+                      {item.description}
+                    </IonLabel>
+                  </IonRow>
                   <IonRow class="ion-justify-content-end">
                     <IonButton
                       fill="clear"

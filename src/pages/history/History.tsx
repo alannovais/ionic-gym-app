@@ -12,6 +12,7 @@ import MonthComponent from '../../components/history/MonthComponent';
 import { HistoryService } from '../../services/HistoryService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
+import '../../theme/variables.css'
 
 const History: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;
@@ -20,7 +21,7 @@ const History: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(HistoryService.get());
-  }, [history, dispatch]);
+  }, []);
 
   let teste = moment().subtract(1, 'month').startOf('month').format('MMMM');
   return (
@@ -30,7 +31,7 @@ const History: React.FC = () => {
           <IonList>
             {history.map((access, indexAccess) => (
               <div key={indexAccess}>
-                <IonListHeader>{`${teste} ${new Date(access.day).getFullYear()}`}</IonListHeader>
+                <IonListHeader class='text-header-semibold'>{`${teste} ${new Date(access.day).getFullYear()}`}</IonListHeader>
                 <MonthComponent month={access.typeAccess} />
               </div>
             ))}

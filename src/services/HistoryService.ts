@@ -8,7 +8,7 @@ export namespace HistoryService {
     'GET/HISTORY',
     async (): Promise<IHistoryDay[]> => {
       let response = await api.get<IHistoryDay[]>('');
-      response.data = HisotryMock;
+      response.data = [...HisotryMock, ...HisotryMock];
       return response.data;
     },
   );

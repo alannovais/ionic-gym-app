@@ -1,6 +1,33 @@
 /* Ionic Variables and Theming. For more info, please see:
 http://ionicframework.com/docs/theming/ */
 
+.text-action {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.text-paragraph { 
+  font-size: 1.06rem;
+}
+
+.text-secondary { 
+  font-size: 0.938rem;
+  font-weight: 200;
+}
+
+.text-header-semibold { 
+  font-size: 1.06rem;
+  font-weight: 600;
+}
+
+.text-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.margin-bottom-8 {
+  margin-bottom: 0.25rem;
+}
 /** Ionic CSS Variables **/
 :root {
   /** primary **/

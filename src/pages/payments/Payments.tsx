@@ -14,6 +14,8 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { PaymentsService } from '../../services/PaymentsService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
+import * as moment from 'moment-timezone';
+import '../../theme/variables.css';
 
 const Payments: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;
@@ -29,19 +31,21 @@ const Payments: React.FC = () => {
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Pagamentos</IonTitle>
+            <IonTitle class="text-header-semibold">Pagamentos</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonItemGroup>
           <IonItemDivider>
-            <IonLabel>Últimos pagamentos</IonLabel>
+            <IonLabel class="text-header-semibold">Últimos pagamentos</IonLabel>
           </IonItemDivider>
           {payments.map((payment, indexPayment) => {
             if (payment.status === 'PAID')
               return (
                 <IonItem key={indexPayment}>
-                  <IonLabel>{`${payment.name} - ${payment.amount},00 $`}</IonLabel>
-                  <IonLabel>{payment.date}</IonLabel>
+                  <IonLabel class="text-sencondary">{`${payment.name} - ${payment.amount},00 $`}</IonLabel>
+                  <IonLabel class="text-sencondary">
+                    {moment(payment.date).format('DD-MM-yyyy')}
+                  </IonLabel>
                 </IonItem>
               );
           })}
@@ -49,14 +53,16 @@ const Payments: React.FC = () => {
 
         <IonItemGroup style={{ marginTop: 16 }}>
           <IonItemDivider>
-            <IonLabel>Pagamentos futuros</IonLabel>
+            <IonLabel class="text-header-semibold">Pagamentos futuros</IonLabel>
           </IonItemDivider>
           {payments.map((payment, indexPayment) => {
             if (payment.status === 'TO_PAY')
               return (
                 <IonItem key={indexPayment}>
-                  <IonLabel>{`${payment.name} - ${payment.amount},00 $`}</IonLabel>
-                  <IonLabel>{payment.date}</IonLabel>
+                  <IonLabel class="text-sencondary">{`${payment.name} - ${payment.amount},00 $`}</IonLabel>
+                  <IonLabel class="text-sencondary">
+                    {moment(payment.date).format('DD-MM-yyyy')}
+                  </IonLabel>
                 </IonItem>
               );
           })}

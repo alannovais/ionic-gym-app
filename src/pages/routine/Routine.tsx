@@ -1,6 +1,7 @@
 import {
   IonCard,
   IonCardContent,
+  IonCol,
   IonContent,
   IonGrid,
   IonHeader,
@@ -21,6 +22,7 @@ import WorkoutDayComponent from '../../components/workout/WorkoutDayComponent';
 import { WorkoutService } from '../../services/WorkoutService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
+import '../../theme/variables.css';
 
 interface temp {
   workout: number;
@@ -75,7 +77,7 @@ const Routine: React.FC = () => {
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">{`${loadRoutine.dayDefined} - ${loadRoutine.name}`}</IonTitle>
+            <IonTitle class="text-header-semibold">{`${loadRoutine.dayDefined} - ${loadRoutine.name}`}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonCard>
@@ -86,19 +88,23 @@ const Routine: React.FC = () => {
                   <IonToggle
                     checked={workoutCompleted}
                     onIonChange={handleFinishWorkout}>
-                    Finalize seu treino
+                    <IonLabel class="text-secondary">
+                      Finalize seu treino
+                    </IonLabel>
                   </IonToggle>
                 </IonRow>
                 <IonList lines="full">
                   {loadRoutine.routine.map((routine, rIndex) => (
                     <IonItem key={rIndex} style={{}}>
-                      <IonLabel>
-                        {routine.muscle}
+                      <IonCol>
+                        <IonLabel class="text-header-semibold">
+                          {routine.muscle}
+                        </IonLabel>
                         <WorkoutDayComponent
                           exerciseList={routine.exercises}
                           exerciseId={(e: number) => getChekedExercise(e)}
                         />
-                      </IonLabel>
+                      </IonCol>
                     </IonItem>
                   ))}
                 </IonList>

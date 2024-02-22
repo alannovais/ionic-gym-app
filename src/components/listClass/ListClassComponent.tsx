@@ -1,53 +1,51 @@
 import { IonImg, IonItem, IonLabel, IonList, IonNote } from '@ionic/react';
-import { IGroupClass } from '../../interfaces';
+import { IClass } from '../../interfaces';
 import groupImage from '../../pages/groupClass/teste.jpg';
+import '../../theme/variables.css';
 
 interface ComponentProps {
-  classes: IGroupClass[];
-  setupPresence: Function;
+    classes: IClass[];
+    setupPresence: Function;
 }
 
 const ListClassComponent: React.FC<ComponentProps> = (props) => {
-  const { classes, setupPresence } = props;
+    const { classes, setupPresence } = props;
 
-  const onOpneModal = (value: IGroupClass) => {
-    setupPresence(value);
-  };
+    const onOpneModal = (value: IClass) => {
+        setupPresence(value);
+    };
 
-  return (
-    <IonList inset={true}>
-      {classes.map((classDay, index) => (
-        <IonItem
-          key={index}
-          onClick={(e) => {
-            e.preventDefault();
-            onOpneModal(classDay);
-          }}>
-          {/* <div style={{ backgroundColor: 'red', height: 60, width: 60 }}>&nbsp;</div> */}
-          <IonImg
-            src={groupImage}
-            style={{ width: '5rem', marginRight: '0.5rem' }}
-            alt="Image about the class which you can choice"
-          />
-          <IonLabel>
-            <h5>{classDay.name}</h5>
-            <p>
-              {classDay.teacher.map((teacher, indexT) => (
-                <span key={indexT}>{teacher.name}</span>
-              ))}
-            </p>
-            <p>{`${classDay.start_at} - ${classDay.end_at}`}</p>
-          </IonLabel>
-          <IonNote slot="end">
-            <IonLabel>
-              Vagas:
-              {classDay.capacity}
-            </IonLabel>
-          </IonNote>
-        </IonItem>
-      ))}
-    </IonList>
-  );
+    return (
+        <IonList inset={true}>
+            {classes.map((classDay, index) => (
+                <IonItem
+                    key={index}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        onOpneModal(classDay);
+                    }}>
+                    <IonImg
+                        src={groupImage}
+                        style={{ width: '5rem', marginRight: '0.5rem' }}
+                        alt="Image about the class which you can choice"
+                    />
+                    <IonLabel>
+                        <IonLabel class="text-header-semibold">{classDay.name}</IonLabel>
+                        {classDay.teacher.map((teacher, indexT) => (
+                            <IonLabel key={indexT}>{teacher.name}</IonLabel>
+                        ))}
+                        <IonLabel>{`${classDay.start_at} - ${classDay.end_at}`}</IonLabel>
+                    </IonLabel>
+                    <IonNote slot="end">
+                        <IonLabel>
+                            Vagas:
+                            {classDay.capacity}
+                        </IonLabel>
+                    </IonNote>
+                </IonItem>
+            ))}
+        </IonList>
+    );
 };
 
 export default ListClassComponent;

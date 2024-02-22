@@ -22,6 +22,7 @@ import { useHistory } from 'react-router-dom';
 import 'swiper/css';
 import AdvertisingsComponent from '../components/advertisings/AdvertisingsComponent';
 import './Home.css';
+import '../theme/variables.css';
 import { TypedUseSelectorHook } from 'react-redux';
 import { RootState } from '../store';
 import { useSelector } from 'react-redux';
@@ -61,7 +62,7 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Company name</IonTitle>
+            <IonTitle class='text-header-semibold'>Company name</IonTitle>
           </IonToolbar>
         </IonHeader>
         <AdvertisingsComponent />

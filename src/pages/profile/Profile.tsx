@@ -17,6 +17,7 @@ import { useHistory } from 'react-router';
 import { TypedUseSelectorHook } from 'react-redux';
 import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
+import '../../theme/variables.css';
 
 const Profile: React.FC = () => {
   const history = useHistory();
@@ -33,23 +34,23 @@ const Profile: React.FC = () => {
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle>Perfil</IonTitle>
+            <IonTitle class="text-header-semibold">Perfil</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid>
           <IonRow>
             <IonCol class="align-img-profile-center">
-              <div className="container-img">
+              <IonRow className="container-img">
                 <IonImg
                   class="image-profile"
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                 />
-              </div>
+              </IonRow>
             </IonCol>
           </IonRow>
           <IonRow class="ion-justify-content-center">
             <IonLabel>
-              <p style={{ fontWeight: 'bold' }}>Olá, {user.name}!</p>
+              <IonLabel class="text-secondary">Olá, {user.name}!</IonLabel>
             </IonLabel>
           </IonRow>
           <IonRow>
@@ -61,7 +62,7 @@ const Profile: React.FC = () => {
                     e.preventDefault();
                     history.push('/change-password');
                   }}>
-                  Alterar senha
+                  <IonLabel class="text-secondary">Alterar senha</IonLabel>
                 </IonItem>
                 <IonItem
                   button
@@ -69,7 +70,9 @@ const Profile: React.FC = () => {
                     e.preventDefault();
                     history.push('/payments');
                   }}>
-                  Hístorico de pagamentos
+                  <IonLabel class="text-secondary">
+                    Hístorico de pagamentos
+                  </IonLabel>
                 </IonItem>
               </IonList>
             </IonCol>

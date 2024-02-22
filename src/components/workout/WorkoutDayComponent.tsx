@@ -1,5 +1,6 @@
-import { IonCheckbox, IonCol, IonGrid, IonRow } from '@ionic/react';
+import { IonCheckbox, IonCol, IonGrid, IonLabel, IonRow } from '@ionic/react';
 import { IExercise } from '../../interfaces';
+import '../../theme/variables.css';
 
 interface ContainerProps {
   exerciseList: IExercise[];
@@ -25,28 +26,35 @@ const WorkoutDayComponent: React.FC<ContainerProps> = (props) => {
 
   return (
     <IonGrid>
-      {exerciseList.map((exercise: IExercise, eIndex: any) => (
+      {exerciseList.map((exercise: IExercise, index: number) => (
         <IonRow
-          key={eIndex}
+          key={index}
           class="ion-justify-content-between ion-align-items-center">
-          <IonCol size="6">
-            <p>{exercise?.name ? exercise.name : ''}</p>
+          <IonCol size="7">
+            <IonLabel class="text-secondary">
+              {exercise?.name ? exercise.name : ''}
+            </IonLabel>
           </IonCol>
           {/** define character limit for exercise */}
-          <IonCol size="5" style={{ width: 80 }}>
+          <IonCol size="4">
             <IonRow class="ion-justify-content-between ion-align-items-center">
-              {generateSetupRoutine(exercise).map((routine, index) => (
-                <span key={index}>{routine}</span>
-              ))}
-              <IonCheckbox
-                style={{ width: 20, height: 20 }}
-                aria-label="check workout"
-                checked={false}
-                onClick={(e) => {
-                  e.preventDefault();
-                  checkExercise(exercise.id);
-                }}></IonCheckbox>
+              {generateSetupRoutine(exercise).map(
+                (routine: string, index: number) => (
+                  <IonLabel class="text-secondary" key={index}>
+                    {routine}
+                  </IonLabel>
+                ),
+              )}
             </IonRow>
+          </IonCol>
+          <IonCol size="1">
+            <IonCheckbox
+              aria-label="check workout"
+              checked={false}
+              onClick={(e) => {
+                e.preventDefault();
+                checkExercise(exercise.id);
+              }}></IonCheckbox>
           </IonCol>
         </IonRow>
       ))}

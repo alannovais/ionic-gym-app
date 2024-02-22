@@ -20,6 +20,7 @@ import { ClassesGroupService } from '../../services/ClassesGroupService';
 import { TeacherService } from '../../services/TeacherService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
+import '../../theme/variables.css'
 
 interface ComponentProps {}
 
@@ -63,7 +64,7 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Agendar aula</IonTitle>
+            <IonTitle class='text-header-semibold'>Agendar aula</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid>
