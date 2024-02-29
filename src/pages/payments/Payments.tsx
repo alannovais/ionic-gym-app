@@ -14,8 +14,8 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { PaymentsService } from '../../services/PaymentsService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import * as moment from 'moment-timezone';
 import '../../theme/variables.scss';
+import { formatDate } from '../../helpers/MomentParses';
 
 const Payments: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;
@@ -44,7 +44,7 @@ const Payments: React.FC = () => {
                 <IonItem key={indexPayment}>
                   <IonLabel class="text-sencondary">{`${payment.name} - ${payment.amount},00 $`}</IonLabel>
                   <IonLabel class="text-sencondary">
-                    {moment(payment.date).format('DD-MM-yyyy')}
+                    {formatDate(payment.date)}
                   </IonLabel>
                 </IonItem>
               );
@@ -61,7 +61,7 @@ const Payments: React.FC = () => {
                 <IonItem key={indexPayment}>
                   <IonLabel class="text-sencondary">{`${payment.name} - ${payment.amount},00 $`}</IonLabel>
                   <IonLabel class="text-sencondary">
-                    {moment(payment.date).format('DD-MM-yyyy')}
+                    {formatDate(payment.date)}
                   </IonLabel>
                 </IonItem>
               );

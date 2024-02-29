@@ -1,5 +1,5 @@
-import { IonCol, IonGrid, IonItem, IonLabel, IonRow } from '@ionic/react';
-import * as moment from 'moment-timezone';
+import { IonCol, IonItem, IonLabel, IonRow } from '@ionic/react';
+import { formatDate } from '../../helpers/MomentParses';
 import { IDayAccessType } from '../../interfaces';
 import '../../theme/variables.scss';
 
@@ -34,7 +34,7 @@ const MonthComponent: React.FC<{ month: IDayAccessType[] }> = (props) => {
                 </div>
                 <div>
                   <IonLabel class="text-secondary" style={{}}>
-                    {moment(type.getIn).format('DD-MM-yyyy')}
+                    {formatDate(type.getIn)}
                   </IonLabel>
                 </div>
               </IonRow>
@@ -64,7 +64,7 @@ const MonthComponent: React.FC<{ month: IDayAccessType[] }> = (props) => {
                 </div>
                 <div>
                   <IonLabel class="text-secondary" style={{}}>
-                    {moment(type.getOut).format('DD-MM-yyyy')}
+                    {formatDate(type.getOut)}
                   </IonLabel>
                 </div>
               </IonRow>

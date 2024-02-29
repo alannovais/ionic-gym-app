@@ -24,7 +24,6 @@ import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
 import '../../theme/variables.scss';
 import './Routine.scss';
-
 const Routine: React.FC = () => {
   const route = useRouteMatch();
   const [workoutCompleted, setWorkoutCompleted] = React.useState(false);
