@@ -11,6 +11,7 @@ import {
   IonLabel,
   IonList,
   IonPage,
+  IonRippleEffect,
   IonRow,
 } from '@ionic/react';
 import { useState } from 'react';
@@ -19,6 +20,7 @@ import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
 import { eye, eyeOutline, lockClosedOutline } from 'ionicons/icons';
 import '../../theme/variables.css';
+import './ChangePassword.css';
 
 const ChangePassword: React.FC = () => {
   const [oldPassword, setOldPassword] = useState('');
@@ -79,14 +81,14 @@ const ChangePassword: React.FC = () => {
                     <IonItem>
                       <IonInput
                         className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
-                        type={togglePassword ? 'password' : 'text'}
+                        type={toggleOldPassword ? 'password' : 'text'}
                         labelPlacement="stacked"
                         label="Senha atual"
                         placeholder="Digite sua senha"
                         errorText="Invalid email"
                         onIonInput={(event) => {
                           validate(event);
-                          setRePassword(event.target.value);
+                          setOldPassword(event.target.value);
                         }}
                         onIonBlur={() => markTouched()}>
                         <IonIcon
@@ -108,7 +110,7 @@ const ChangePassword: React.FC = () => {
                       </IonInput>
                       <IonInput
                         className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
-                        type="password"
+                        type={togglePassword ? 'password' : 'text'}
                         labelPlacement="stacked"
                         label="Nova senha"
                         placeholder="Digite sua senha"
@@ -137,7 +139,7 @@ const ChangePassword: React.FC = () => {
                       </IonInput>
                       <IonInput
                         className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
-                        type="password"
+                        type={toggleRePassword ? 'password' : 'text'}
                         labelPlacement="stacked"
                         label="Repita a senha"
                         placeholder="Digite sua senha"
@@ -167,17 +169,19 @@ const ChangePassword: React.FC = () => {
                     </IonItem>
                   </IonList>
                   <IonRow class="ion-justify-content-center">
-                    <IonButton
+                    <div
                       style={{
                         marginTop: '0.5rem',
                         minWidth: '80%',
                       }}
+                      className="ion-activatable ripple-parent custom-parent"
                       onClick={(e) => {
                         e.preventDefault();
                         handlerUpdatePassword();
                       }}>
                       <IonLabel class="text-secondary">Salvar</IonLabel>
-                    </IonButton>
+                      <IonRippleEffect></IonRippleEffect>
+                    </div>
                   </IonRow>
                 </form>
               </IonCardContent>

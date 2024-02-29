@@ -30,7 +30,7 @@ export const SwipperWorkoutComponent: React.FC<ComponentProps> = (props) => {
       effect={'coverflow'}
       spaceBetween={0}
       coverflowEffect={{
-        rotate: 8,
+        rotate: 0,
         stretch: 0,
         depth: 100,
         modifier: 1,
@@ -43,23 +43,27 @@ export const SwipperWorkoutComponent: React.FC<ComponentProps> = (props) => {
       direction={'vertical'}
       style={{ width: '80%', height: '100%' }}>
       {weekDays.map((day, index) => (
-        <SwiperSlide key={index} >
+        <SwiperSlide key={index}>
           {plan.map(
             (work, wIndex) =>
               day === work.dayDefined && (
                 <IonCard
                   key={wIndex}
-                  style={{ width: '90%' }}
+                  style={{
+                    width: '30rem',
+                    height: '10rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
                   onClick={(e) => {
                     e.preventDefault();
                     history.push(`/workout/routine/${work.id}`);
                   }}>
                   <IonCardHeader>
-                    <IonCardSubtitle>
-                      <IonLabel class="text-header-semibold">
-                        {day} <br /> {work.name}
-                      </IonLabel>
-                    </IonCardSubtitle>
+                    <IonLabel class="text-header-semibold">
+                      {day} - {work.name}
+                    </IonLabel>
                   </IonCardHeader>
                 </IonCard>
               ),

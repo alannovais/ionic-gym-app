@@ -34,7 +34,7 @@ import {
   bookmarkOutline,
   homeOutline,
   mailOutline,
-  timerOutline
+  timerOutline,
 } from 'ionicons/icons';
 import Evolution from './pages/evolution/Evolution';
 import ScheduleClass from './pages/group-class/ScheduleClass';
@@ -73,17 +73,17 @@ const App: React.FC = () => (
         <IonTabBar slot="bottom">
           <IonTabButton tab="home" href="/home">
             <IonIcon icon={homeOutline} />
-            <IonLabel class='text-action'>Ginásio</IonLabel>
+            <IonLabel class="text-action">Ginásio</IonLabel>
           </IonTabButton>
 
           <IonTabButton tab="workout" href="/workout">
             <IonIcon icon={barbellOutline} />
-            <IonLabel class='text-action'>Treino</IonLabel>
+            <IonLabel class="text-action">Treino</IonLabel>
           </IonTabButton>
 
           <IonTabButton tab="evolution" href="/schedule">
             <IonIcon icon={bookmarkOutline} />
-            <IonLabel class='text-action'>Agendar</IonLabel>
+            <IonLabel class="text-action">Agendar</IonLabel>
           </IonTabButton>
 
           {/* <IonTabButton tab="evolution" href="/evolution">
@@ -98,7 +98,7 @@ const App: React.FC = () => (
 
           <IonTabButton tab="messages" href="/messages">
             <IonIcon icon={mailOutline} />
-            <IonLabel class='text-action'>Menssagens</IonLabel>
+            <IonLabel class="text-action">Menssagens</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

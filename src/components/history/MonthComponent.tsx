@@ -10,54 +10,66 @@ const MonthComponent: React.FC<{ month: IDayAccessType[] }> = (props) => {
     <>
       {month.map((type, indexType) => (
         <IonItem key={indexType}>
-          <IonGrid>
-            <IonRow class="margin-bottom-8">
-              <IonCol size='6'>
-                <IonRow class="ion-justify-content-between">
-                  <IonCol>
-                    <IonLabel class="text-header-semibold margin-bottom-8">
-                      Item:
-                    </IonLabel>
-                  </IonCol>
-                  <IonCol>
-                    <IonLabel
-                      class="text-secondary"
-                      style={{ marginLeft: '0.25rem' }}>
-                      {type.type}
-                    </IonLabel>
-                  </IonCol>
-                </IonRow>
-                <IonRow>
-                  <IonLabel class="text-header-semibold">Duração:</IonLabel>
-                  <IonLabel
-                    class="text-secondary"
-                    style={{ marginLeft: '0.25rem' }}>
+          <IonRow style={{ width: '100%' }}>
+            <IonCol>
+              <IonRow class="ion-justify-content-between">
+                <div>
+                  <IonLabel class="text-header-semibold margin-bottom-8">
+                    Item:
+                  </IonLabel>
+                </div>
+                <div>
+                  <IonLabel class="text-secondary" style={{}}>
+                    {type.type}
+                  </IonLabel>
+                </div>
+              </IonRow>
+            </IonCol>
+            <IonCol>
+              <IonRow class="ion-justify-content-between">
+                <div>
+                  <IonLabel class="text-header-semibold margin-bottom-8">
+                    Entrada:
+                  </IonLabel>
+                </div>
+                <div>
+                  <IonLabel class="text-secondary" style={{}}>
+                    {moment(type.getIn).format('DD-MM-yyyy')}
+                  </IonLabel>
+                </div>
+              </IonRow>
+            </IonCol>
+          </IonRow>
+          <IonRow style={{ width: '100%' }} class="ion-justify-content-between">
+            <IonCol>
+              <IonRow class="ion-justify-content-between">
+                <div>
+                  <IonLabel class="text-header-semibold margin-bottom-8">
+                    Duração:
+                  </IonLabel>
+                </div>
+                <div>
+                  <IonLabel class="text-secondary" style={{}}>
                     2h:30min
                   </IonLabel>
-                </IonRow>
-              </IonCol>
-              <IonCol size='6'>
-                <IonRow class="ion-justify-content-evenly">
-                  <IonCol>
-                    <IonLabel class="text-header-semibold margin-bottom-8">
-                      Entrada:
-                    </IonLabel>
-                  </IonCol>
-                  <IonCol>
-                    <IonLabel class="text-secondary">
-                      {moment(type.getIn).format('DD-MM-yyyy')}
-                    </IonLabel>
-                  </IonCol>
-                </IonRow>
-                <IonRow>
-                  <IonLabel class="text-header-semibold">Saída:</IonLabel>
-                  <IonLabel class="text-secondary">
+                </div>
+              </IonRow>
+            </IonCol>
+            <IonCol>
+              <IonRow class="ion-justify-content-between">
+                <div>
+                  <IonLabel class="text-header-semibold margin-bottom-8">
+                    Saida:
+                  </IonLabel>
+                </div>
+                <div>
+                  <IonLabel class="text-secondary" style={{}}>
                     {moment(type.getOut).format('DD-MM-yyyy')}
                   </IonLabel>
-                </IonRow>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
+                </div>
+              </IonRow>
+            </IonCol>
+          </IonRow>
         </IonItem>
       ))}
     </>
