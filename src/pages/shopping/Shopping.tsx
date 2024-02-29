@@ -19,7 +19,7 @@ import { SalesService } from '../../services/SalesService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
 import teste from '../group-class/teste.jpg';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 const Shopping: React.FC<any> = () => {
   const dispatch = useDispatch<AppDispatch>();

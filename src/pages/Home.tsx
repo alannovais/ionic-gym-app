@@ -19,8 +19,8 @@ import AdvertisingsComponent from '../components/advertisings/AdvertisingsCompon
 import { ClassesGroupService } from '../services';
 import { RootState } from '../store';
 import { AppDispatch } from '../store/store';
-import '../theme/variables.css';
-import './Home.css';
+import '../theme/variables.scss';
+import './Home.scss';
 
 const Home: React.FC = () => {
   const history = useHistory();

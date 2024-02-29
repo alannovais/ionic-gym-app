@@ -8,14 +8,13 @@ import 'swiper/css/zoom';
 
 import { IonGrid } from '@ionic/react';
 import {
-  Navigation,
-  Pagination,
-  Mousewheel,
-  Keyboard,
   Autoplay,
+  Mousewheel,
+  Navigation,
+  Pagination
 } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './index.css';
+import './index.scss';
 
 interface ComponentProps {
   heigthSlide: number;

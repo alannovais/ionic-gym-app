@@ -1,7 +1,7 @@
 import { IonCol, IonGrid, IonItem, IonLabel, IonRow } from '@ionic/react';
 import * as moment from 'moment-timezone';
 import { IDayAccessType } from '../../interfaces';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 const MonthComponent: React.FC<{ month: IDayAccessType[] }> = (props) => {
   const { month } = props;

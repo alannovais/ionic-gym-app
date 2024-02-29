@@ -6,7 +6,7 @@ import { WeekDays } from '../../constants/Contants';
 import { PlanService } from '../../services/PlanService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 const Workout: React.FC = () => {
   const weekDays = React.useRef(WeekDays);

@@ -8,7 +8,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { IClass } from '../../interfaces';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 interface ComponentProps {
   classes: IClass[];

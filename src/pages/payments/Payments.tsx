@@ -15,7 +15,7 @@ import { PaymentsService } from '../../services/PaymentsService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
 import * as moment from 'moment-timezone';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 const Payments: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;

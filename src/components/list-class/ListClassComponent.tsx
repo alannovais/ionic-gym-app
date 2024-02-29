@@ -1,7 +1,7 @@
 import { IonImg, IonItem, IonLabel, IonList, IonNote } from '@ionic/react';
 import { IClass } from '../../interfaces';
 import groupImage from '../../pages/group-class/teste.jpg';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 interface ComponentProps {
   classes: IClass[];

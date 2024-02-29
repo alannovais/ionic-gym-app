@@ -12,7 +12,7 @@ import MonthComponent from '../../components/history/MonthComponent';
 import { HistoryService } from '../../services/HistoryService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 const History: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;

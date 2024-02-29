@@ -19,7 +19,7 @@ import { ClassesGroupService } from '../../services/ClassesGroupService';
 import { TeacherService } from '../../services/TeacherService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 import { ITeacher } from '../../interfaces';
 
 interface ComponentProps {}

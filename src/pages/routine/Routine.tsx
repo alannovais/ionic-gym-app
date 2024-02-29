@@ -22,8 +22,8 @@ import WorkoutDayComponent from '../../components/workout/WorkoutDayComponent';
 import { WorkoutService } from '../../services/WorkoutService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.css';
-import './Routine.css';
+import '../../theme/variables.scss';
+import './Routine.scss';
 
 const Routine: React.FC = () => {
   const route = useRouteMatch();

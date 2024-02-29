@@ -1,5 +1,5 @@
 import { IonItem, IonList, IonSelect, IonSelectOption } from '@ionic/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IClass, ITeacher } from '../../interfaces';
 
 const compareWith = (o1: ITeacher | IClass, o2: ITeacher | IClass) => {

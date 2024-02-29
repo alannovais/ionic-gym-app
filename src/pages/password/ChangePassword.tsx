@@ -19,8 +19,8 @@ import { TypedUseSelectorHook } from 'react-redux';
 import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
 import { eye, eyeOutline, lockClosedOutline } from 'ionicons/icons';
-import '../../theme/variables.css';
-import './ChangePassword.css';
+import '../../theme/variables.scss';
+import './ChangePassword.scss';
 
 const ChangePassword: React.FC = () => {
   const [oldPassword, setOldPassword] = useState('');

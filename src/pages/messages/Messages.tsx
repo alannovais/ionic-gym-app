@@ -18,7 +18,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { MessageService } from '../../services/MessageService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 const Messages: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();

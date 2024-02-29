@@ -1,6 +1,6 @@
 import { IonCheckbox, IonCol, IonGrid, IonLabel, IonRow } from '@ionic/react';
 import { IExercise } from '../../interfaces';
-import '../../theme/variables.css';
+import '../../theme/variables.scss';
 
 interface ContainerProps {
   exerciseList: IExercise[];

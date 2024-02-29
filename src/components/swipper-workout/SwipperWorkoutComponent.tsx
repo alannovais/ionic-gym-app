@@ -1,10 +1,10 @@
 import {
   IonCard,
   IonCardHeader,
-  IonCardSubtitle,
-  IonLabel,
+  IonLabel
 } from '@ionic/react';
 import React from 'react';
+import { useHistory } from 'react-router';
 import {
   EffectCoverflow,
   Mousewheel,
@@ -13,7 +13,6 @@ import {
 } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { IPlan } from '../../interfaces';
-import { useHistory } from 'react-router';
 
 interface ComponentProps {
   weekDays: string[];

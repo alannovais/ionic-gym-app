@@ -46,7 +46,7 @@ import Profile from './pages/profile/Profile';
 import Routine from './pages/routine/Routine';
 import Shopping from './pages/shopping/Shopping';
 import Workout from './pages/workout/Workout';
-import './theme/variables.css';
+import './theme/variables.scss';
 
 setupIonicReact();
 
