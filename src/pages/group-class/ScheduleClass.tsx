@@ -11,16 +11,16 @@ import {
   useIonAlert,
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { FilterCalssComponent } from '../../components';
-import ListClassComponent from '../../components/listClass/ListClassComponent';
+import { FilterClassComponent, ListClassComponent } from '../../components';
 import { IClass } from '../../interfaces/IClass';
 import { ClassesGroupService } from '../../services/ClassesGroupService';
 import { TeacherService } from '../../services/TeacherService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.css'
+import '../../theme/variables.css';
+import { ITeacher } from '../../interfaces';
 
 interface ComponentProps {}
 
@@ -32,6 +32,11 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
   const classes = selector((state) => state.groupClasses.data);
   const classesFilter = selector((state) => state.classes.data);
   const teachersFilter = selector((state) => state.teachers.data);
+  const [clearFields, setClearFields] = useState<boolean>(false);
+  const [filtering, setFiltering] = useState<{
+    teacher: ITeacher;
+    classObj: IClass;
+  }>();
 
   React.useEffect(() => {
     dispatch(ClassesGroupService.get());
@@ -39,13 +44,37 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
     dispatch(TeacherService.get());
   }, []);
 
+  React.useEffect(() => {
+    setClearFields(false);
+    callFilterService();
+  }, [clearFields, filtering]);
+
   const classPresence = (id: number) => {
     console.log(id);
     //Todo dispatch the event
   };
 
+  const onHandleTeacherSelected = (teacher: ITeacher) => {
+    setFiltering({
+      teacher,
+      classObj: filtering?.classObj?.id ? filtering?.classObj : ({} as IClass),
+    });
+  };
+
+  const onHandleClassSelected = (classObj: IClass) => {
+    setFiltering({
+      teacher: filtering?.teacher?.id ? filtering?.teacher : ({} as ITeacher),
+      classObj,
+    });
+  };
+
+  const callFilterService = () => {
+    console.log(filtering);
+  };
+
   const clearFilters = () => {
-    //Todo Clear the filters
+    setClearFields(true);
+    setFiltering(undefined);
   };
 
   const setupPresence = (data: IClass) => {
@@ -64,16 +93,23 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle class='text-header-semibold'>Agendar aula</IonTitle>
+            <IonTitle class="text-header-semibold">Agendar aula</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid>
           <IonRow class="ion-justify-content-around">
-            <FilterCalssComponent
+            <FilterClassComponent
               label={'Professores'}
               value={teachersFilter}
+              clearFields={clearFields}
+              selectedValue={onHandleTeacherSelected}
             />
-            <FilterCalssComponent label={'Aulas'} value={classesFilter} />
+            <FilterClassComponent
+              label={'Aulas'}
+              value={classesFilter}
+              clearFields={clearFields}
+              selectedValue={onHandleClassSelected}
+            />
             <IonButton
               fill="clear"
               onClick={(e) => {

@@ -18,7 +18,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { SalesService } from '../../services/SalesService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import teste from '../groupClass/teste.jpg';
+import teste from '../group-class/teste.jpg';
 import '../../theme/variables.css';
 
 const Shopping: React.FC<any> = () => {

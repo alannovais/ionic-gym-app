@@ -9,6 +9,7 @@ import WorkoutReducer from './workoutStore';
 import PaymentReducer from './paymentStore';
 import SalesReducer from './shoppingStore';
 import UserReducer from './userStore';
+import BookedReducer from './bookedStore';
 
 const rootReducer = combineReducers({
   messages: MessageReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   teachers: TeacherReducer,
   payments: PaymentReducer,
   sales: SalesReducer,
-  user: UserReducer
+  user: UserReducer,
+  bookedClasses: BookedReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

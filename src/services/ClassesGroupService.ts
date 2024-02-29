@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IClass } from '../interfaces';
+import { IBookedClass, IClass } from '../interfaces';
 import { ClassesMock } from '../mocks/GroupClassMock';
+import { BookedMock } from '../mocks/BookedMock';
 import api from './api';
 
 export namespace ClassesGroupService {
@@ -18,4 +19,13 @@ export namespace ClassesGroupService {
     }));
     return response.data;
   });
+
+  export const booked = createAsyncThunk(
+    'BOOKED/CLASSES',
+    async (alunoId: number) => {
+      let response = await api.get<IClass[]>(`${alunoId}`);
+      response.data = BookedMock;
+      return response.data;
+    },
+  );
 }

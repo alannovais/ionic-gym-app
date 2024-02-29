@@ -1,38 +1,38 @@
 import {
   IonButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCol,
   IonContent,
-  IonGrid,
   IonHeader,
   IonIcon,
   IonPage,
-  IonRow,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from '@ionic/react';
 import '@ionic/react/css/ionic-swiper.css';
 import { cartOutline, personCircleOutline } from 'ionicons/icons';
+import React from 'react';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import 'swiper/css';
+import { UpComingClassesComponent } from '../components';
 import AdvertisingsComponent from '../components/advertisings/AdvertisingsComponent';
-import './Home.css';
-import '../theme/variables.css';
-import { TypedUseSelectorHook } from 'react-redux';
+import { ClassesGroupService } from '../services';
 import { RootState } from '../store';
-import { useSelector } from 'react-redux';
+import { AppDispatch } from '../store/store';
+import '../theme/variables.css';
+import './Home.css';
 
 const Home: React.FC = () => {
   const history = useHistory();
   const selector: TypedUseSelectorHook<RootState> = useSelector;
   const user = selector((state) => state.user.data);
+  const booked = selector((state) => state.bookedClasses.data);
 
-  console.log(user);
+  const dispatch = useDispatch<AppDispatch>();
+  React.useEffect(() => {
+    dispatch(ClassesGroupService.booked(user.id));
+    console.log(user, booked);
+  }, []);
 
   return (
     <IonPage>
@@ -62,40 +62,11 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle class='text-header-semibold'>Company name</IonTitle>
+            <IonTitle class="text-header-semibold">Company name</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <AdvertisingsComponent />
-        <IonCard
-          onClick={(e) => {
-            e.preventDefault();
-            history.push('/schedule');
-          }}>
-          <IonGrid>
-            <IonRow
-              class="ion-align-items-center"
-              style={{
-                paddingLeft: 8,
-              }}>
-              <IonCol
-                size="3"
-                style={{
-                  backgroundColor: 'red',
-                  height: 80,
-                  width: 100,
-                }}>
-                &nbsp;
-              </IonCol>
-              <IonCol>
-                <IonCardHeader>
-                  <IonCardTitle>Marcar Aulas</IonCardTitle>
-                  <IonCardSubtitle>Power Step</IonCardSubtitle>
-                </IonCardHeader>
-                <IonCardContent>Descrição da aula</IonCardContent>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
-        </IonCard>
+        <AdvertisingsComponent heigthSlide={200} backgroundColor={'red'} />
+        <UpComingClassesComponent classes={booked} />
       </IonContent>
     </IonPage>
   );

@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonCard,
   IonCardContent,
   IonCol,
@@ -11,9 +12,8 @@ import {
   IonPage,
   IonRow,
   IonTitle,
-  IonToggle,
   IonToolbar,
-  useIonAlert,
+  useIonAlert
 } from '@ionic/react';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
@@ -23,12 +23,7 @@ import { WorkoutService } from '../../services/WorkoutService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
 import '../../theme/variables.css';
-
-interface temp {
-  workout: number;
-  complete: boolean;
-  day: Date;
-}
+import './Routine.css';
 
 const Routine: React.FC = () => {
   const route = useRouteMatch();
@@ -47,29 +42,27 @@ const Routine: React.FC = () => {
     console.log('workout ', id);
   };
 
-  const handleFinishWorkout = (data: any) => {
-    data.preventDefault();
-    data.stopPropagation();
+  const handleFinishWorkout = () => {
     presentAlert({
-      header: workoutCompleted ? 'Concluir treino' : 'Reabrir treino',
+      header: !workoutCompleted ? 'Concluir treino' : 'Reabrir treino',
       subHeader: workoutCompleted
         ? `Treino finalizado?`
         : 'Deseja regressar o treino?',
       message: `${loadRoutine.dayDefined} - ${loadRoutine.name}`,
       buttons: [
-        { text: 'Sim', handler: () => toggleClass(data) },
-        { text: 'Não', handler: () => undefined },
+        {
+          text: 'Sim',
+          handler: () =>
+            !workoutCompleted
+              ? setWorkoutCompleted(true)
+              : setWorkoutCompleted(false),
+        },
+        {
+          text: 'Não',
+          handler: () => setWorkoutCompleted(false),
+        },
       ],
     });
-  };
-
-  const toggleClass = (event: Event) => {
-    console.log({
-      workout: route.params?.id,
-      complete: !workoutCompleted,
-      day: new Date(),
-    });
-    setWorkoutCompleted(!workoutCompleted);
   };
 
   return (
@@ -85,13 +78,12 @@ const Routine: React.FC = () => {
             <IonCardContent>
               <IonGrid>
                 <IonRow class="ion-justify-content-end">
-                  <IonToggle
-                    checked={workoutCompleted}
-                    onIonChange={handleFinishWorkout}>
-                    <IonLabel class="text-secondary">
-                      Finalize seu treino
-                    </IonLabel>
-                  </IonToggle>
+                  <IonButton
+                    fill="clear"
+                    onClick={handleFinishWorkout}
+                    className={`toggle-button ${workoutCompleted ? 'on' : 'off'}`}>
+                    {workoutCompleted ? 'ON' : 'OFF'}
+                  </IonButton>
                 </IonRow>
                 <IonList lines="full">
                   {loadRoutine.routine.map((routine, rIndex) => (

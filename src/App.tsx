@@ -31,13 +31,13 @@ import '@ionic/react/css/text-transformation.css';
 /* Theme variables */
 import {
   barbellOutline,
+  bookmarkOutline,
   homeOutline,
   mailOutline,
-  statsChartOutline,
   timerOutline
 } from 'ionicons/icons';
 import Evolution from './pages/evolution/Evolution';
-import ScheduleClass from './pages/groupClass/ScheduleClass';
+import ScheduleClass from './pages/group-class/ScheduleClass';
 import History from './pages/history/History';
 import Messages from './pages/messages/Messages';
 import ChangePassword from './pages/password/ChangePassword';
@@ -71,20 +71,25 @@ const App: React.FC = () => (
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={homeOutline} />
+            <IonLabel class='text-action'>Ginásio</IonLabel>
+          </IonTabButton>
+
           <IonTabButton tab="workout" href="/workout">
             <IonIcon icon={barbellOutline} />
             <IonLabel class='text-action'>Treino</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="evolution" href="/evolution">
-            <IonIcon icon={statsChartOutline} />
-            <IonLabel class='text-action'>Evolução</IonLabel>
+          <IonTabButton tab="evolution" href="/schedule">
+            <IonIcon icon={bookmarkOutline} />
+            <IonLabel class='text-action'>Agendar</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={homeOutline} />
-            <IonLabel class='text-action'>Meu espaço</IonLabel>
-          </IonTabButton>
+          {/* <IonTabButton tab="evolution" href="/evolution">
+            <IonIcon icon={statsChartOutline} />
+            <IonLabel class='text-action'>Evolução</IonLabel>
+          </IonTabButton> */}
 
           <IonTabButton tab="history" href="/history">
             <IonIcon icon={timerOutline} />

@@ -1,11 +1,14 @@
 import {
   IonButton,
+  IonCard,
+  IonCardContent,
   IonCol,
   IonContent,
   IonGrid,
   IonIcon,
   IonInput,
   IonItem,
+  IonLabel,
   IonList,
   IonPage,
   IonRow,
@@ -14,13 +17,18 @@ import { useState } from 'react';
 import { TypedUseSelectorHook } from 'react-redux';
 import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
-import { eyeOutline, lockClosedOutline } from 'ionicons/icons';
+import { eye, eyeOutline, lockClosedOutline } from 'ionicons/icons';
+import '../../theme/variables.css';
 
 const ChangePassword: React.FC = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
-  
+
+  const [toggleOldPassword, setToggleOldPassword] = useState(false);
+  const [togglePassword, setTogglePassword] = useState(false);
+  const [toggleRePassword, setToggleRePassword] = useState(false);
+
   const [isTouched, setIsTouched] = useState(false);
   const [isValid, setIsValid] = useState<boolean>();
 
@@ -64,73 +72,116 @@ const ChangePassword: React.FC = () => {
       <IonContent>
         <IonGrid>
           <IonCol>
-            <form>
-              <IonInput
-                className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
-                type="text"
-                fill="solid"
-                label="Senha atual"
-                labelPlacement="floating"
-                errorText="Invalid email"
-                onIonInput={(event) => {
-                  validate(event);
-                  setOldPassword(event.target.value);
-                }}
-                onIonBlur={() => markTouched()}></IonInput>
-              <IonInput
-                className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
-                type="password"
-                fill="solid"
-                label="Nova senha"
-                labelPlacement="floating"
-                errorText="Invalid email"
-                onIonInput={(event) => {
-                  validate(event);
-                  setPassword(event.target.value);
-                }}
-                onIonBlur={() => markTouched()}></IonInput>
-              <IonInput
-                className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
-                type="password"
-                fill="solid"
-                label="Repita senha"
-                labelPlacement="floating"
-                errorText="Invalid email"
-                onIonInput={(event) => {
-                  validate(event);
-                  setRePassword(event.target.value);
-                }}
-                onIonBlur={() => markTouched()}></IonInput>
-              <IonRow class="ion-justify-content-center">
-                <IonButton
-                  fill="clear"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handlerUpdatePassword();
-                  }}>
-                  Salvar
-                </IonButton>
-              </IonRow>
-            </form>
-            <IonList>
-              <IonItem>
-                <IonInput
-                  labelPlacement="stacked"
-                  label="Email"
-                  placeholder="email@domain.com">
-                  <IonIcon
-                    slot="start"
-                    icon={lockClosedOutline}
-                    aria-hidden="true"></IonIcon>
-                  <IonButton fill="clear" slot="end" aria-label="Show/hide">
-                    <IonIcon
-                      slot="icon-only"
-                      name={eyeOutline}
-                      aria-hidden="true"></IonIcon>
-                  </IonButton>
-                </IonInput>
-              </IonItem>
-            </IonList>
+            <IonCard>
+              <IonCardContent>
+                <form>
+                  <IonList lines="none">
+                    <IonItem>
+                      <IonInput
+                        className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
+                        type={togglePassword ? 'password' : 'text'}
+                        labelPlacement="stacked"
+                        label="Senha atual"
+                        placeholder="Digite sua senha"
+                        errorText="Invalid email"
+                        onIonInput={(event) => {
+                          validate(event);
+                          setRePassword(event.target.value);
+                        }}
+                        onIonBlur={() => markTouched()}>
+                        <IonIcon
+                          slot="start"
+                          icon={lockClosedOutline}
+                          aria-hidden="true"></IonIcon>
+                        <IonButton
+                          slot="end"
+                          aria-label="Show/hide"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setToggleOldPassword(!toggleOldPassword);
+                          }}>
+                          <IonIcon
+                            slot="icon-only"
+                            name={eye}
+                            aria-hidden="true"></IonIcon>
+                        </IonButton>
+                      </IonInput>
+                      <IonInput
+                        className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
+                        type="password"
+                        labelPlacement="stacked"
+                        label="Nova senha"
+                        placeholder="Digite sua senha"
+                        errorText="Invalid email"
+                        onIonInput={(event) => {
+                          validate(event);
+                          setRePassword(event.target.value);
+                        }}
+                        onIonBlur={() => markTouched()}>
+                        <IonIcon
+                          slot="start"
+                          icon={lockClosedOutline}
+                          aria-hidden="true"></IonIcon>
+                        <IonButton
+                          slot="end"
+                          aria-label="Show/hide"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setTogglePassword(!togglePassword);
+                          }}>
+                          <IonIcon
+                            slot="icon-only"
+                            name={eyeOutline}
+                            aria-hidden="true"></IonIcon>
+                        </IonButton>
+                      </IonInput>
+                      <IonInput
+                        className={`${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
+                        type="password"
+                        labelPlacement="stacked"
+                        label="Repita a senha"
+                        placeholder="Digite sua senha"
+                        errorText="Invalid email"
+                        onIonInput={(event) => {
+                          validate(event);
+                          setRePassword(event.target.value);
+                        }}
+                        onIonBlur={() => markTouched()}>
+                        <IonIcon
+                          slot="start"
+                          icon={lockClosedOutline}
+                          aria-hidden="true"></IonIcon>
+                        <IonButton
+                          slot="end"
+                          aria-label="Show/hide"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setToggleRePassword(!toggleRePassword);
+                          }}>
+                          <IonIcon
+                            slot="icon-only"
+                            name={eyeOutline}
+                            aria-hidden="true"></IonIcon>
+                        </IonButton>
+                      </IonInput>
+                    </IonItem>
+                  </IonList>
+                  <IonRow class="ion-justify-content-center">
+                    <IonButton
+                      style={{
+                        marginTop: '0.5rem',
+                        minWidth: '80%',
+                      }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlerUpdatePassword();
+                      }}>
+                      <IonLabel class="text-secondary">Salvar</IonLabel>
+                    </IonButton>
+                  </IonRow>
+                </form>
+              </IonCardContent>
+            </IonCard>
           </IonCol>
         </IonGrid>
       </IonContent>
