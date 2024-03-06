@@ -1,21 +1,47 @@
-/* Ionic Variables and Theming. For more info, please see:
-http://ionicframework.com/docs/theming/ */
+$main-color: #7ec57e;
+$main-as-shadow: rgba(106, 197, 106, 10);
+$background-app: #f8f8fc;
+
+
+// ion-list {
+//   background-color: red;
+// } doesnt work 
+
+ion-icon {
+  color: $main-color;
+}
+
+ion-select {
+  color: $main-color
+}
+
+ion-content {
+  --background: #{$background-app};
+}
+
+.font-main-color {
+  color: $main-color
+}
+
+.font-main-shadow-color {
+  color: $main-as-shadow
+}
 
 .text-action {
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-.text-paragraph { 
+.text-paragraph {
   font-size: 1.06rem;
 }
 
-.text-secondary { 
+.text-secondary {
   font-size: 0.938rem;
   font-weight: 200;
 }
 
-.text-header-semibold { 
+.text-header-semibold {
   font-size: 1.06rem;
   font-weight: 600;
 }
@@ -28,8 +54,17 @@ http://ionicframework.com/docs/theming/ */
 .margin-bottom-8 {
   margin-bottom: 0.25rem;
 }
+
+.tab-selected {
+  color: $main-color;
+}
+
+:host {
+  --color-selected: red;
+}
 /** Ionic CSS Variables **/
 :root {
+  // --ion-background-color: #f8f8fc;
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

@@ -1,7 +1,6 @@
 import { IonImg, IonItem, IonLabel, IonList, IonNote } from '@ionic/react';
 import { IClass } from '../../interfaces';
 import groupImage from '../../pages/group-class/teste.jpg';
-import '../../theme/variables.scss';
 
 interface ComponentProps {
   classes: IClass[];
@@ -37,7 +36,7 @@ export const ListClassComponent: React.FC<ComponentProps> = (props) => {
             <IonLabel>{`${classDay.start_at} - ${classDay.end_at}`}</IonLabel>
           </IonLabel>
           <IonNote slot="end">
-            <IonLabel>
+            <IonLabel class='text-secondary font-main-color'>
               Vagas:
               {classDay.capacity}
             </IonLabel>

@@ -14,7 +14,6 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { PaymentsService } from '../../services/PaymentsService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.scss';
 import { formatDate } from '../../helpers/MomentParses';
 
 const Payments: React.FC = () => {

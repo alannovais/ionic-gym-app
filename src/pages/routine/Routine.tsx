@@ -13,7 +13,7 @@ import {
   IonRow,
   IonTitle,
   IonToolbar,
-  useIonAlert
+  useIonAlert,
 } from '@ionic/react';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
@@ -22,8 +22,8 @@ import WorkoutDayComponent from '../../components/workout/WorkoutDayComponent';
 import { WorkoutService } from '../../services/WorkoutService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.scss';
 import './Routine.scss';
+
 const Routine: React.FC = () => {
   const route = useRouteMatch();
   const [workoutCompleted, setWorkoutCompleted] = React.useState(false);
@@ -69,7 +69,7 @@ const Routine: React.FC = () => {
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle class="text-header-semibold">{`${loadRoutine.dayDefined} - ${loadRoutine.name}`}</IonTitle>
+            <IonTitle class="text-header-semibold font-main-color">{`${loadRoutine.dayDefined} - ${loadRoutine.name}`}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonCard>
@@ -84,21 +84,20 @@ const Routine: React.FC = () => {
                     {workoutCompleted ? 'ON' : 'OFF'}
                   </IonButton>
                 </IonRow>
-                <IonList lines="full">
-                  {loadRoutine.routine.map((routine, rIndex) => (
-                    <IonItem key={rIndex} style={{}}>
-                      <IonCol>
-                        <IonLabel class="text-header-semibold">
-                          {routine.muscle}
-                        </IonLabel>
-                        <WorkoutDayComponent
-                          exerciseList={routine.exercises}
-                          exerciseId={(e: number) => getChekedExercise(e)}
-                        />
-                      </IonCol>
-                    </IonItem>
-                  ))}
-                </IonList>
+
+                {loadRoutine.routine.map((routine, rIndex) => (
+                  <div>
+                    <IonCol>
+                      <IonLabel class="text-header-semibold">
+                        {routine.muscle}
+                      </IonLabel>
+                      <WorkoutDayComponent
+                        exerciseList={routine.exercises}
+                        exerciseId={(e: number) => getChekedExercise(e)}
+                      />
+                    </IonCol>
+                  </div>
+                ))}
               </IonGrid>
             </IonCardContent>
           )}

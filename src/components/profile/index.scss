@@ -1,0 +1,11 @@
+@import '../../theme/variables.scss';
+
+.dawn-color {
+    background: linear-gradient(360deg, $main-color, $main-as-shadow, #fff);
+    border-bottom-left-radius: 20rem;
+    border-bottom-right-radius: 20rem;
+    height: 27vh;
+}
+ion-card-content {
+  background-color: #fff !important;
+}

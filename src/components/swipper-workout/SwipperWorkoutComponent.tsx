@@ -40,7 +40,7 @@ export const SwipperWorkoutComponent: React.FC<ComponentProps> = (props) => {
       mousewheel={true}
       modules={[Navigation, Pagination, Mousewheel, EffectCoverflow]}
       direction={'vertical'}
-      style={{ width: '80%', height: '100%' }}>
+      style={{ width: '95%', height: '100%' }}>
       {weekDays.map((day, index) => (
         <SwiperSlide key={index}>
           {plan.map(
@@ -57,7 +57,7 @@ export const SwipperWorkoutComponent: React.FC<ComponentProps> = (props) => {
                   }}
                   onClick={(e) => {
                     e.preventDefault();
-                    history.push(`/workout/routine/${work.id}`);
+                    history.push(`/workout/${work.id}/routine`);
                   }}>
                   <IonCardHeader>
                     <IonLabel class="text-header-semibold">

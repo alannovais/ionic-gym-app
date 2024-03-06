@@ -24,7 +24,7 @@ export namespace ClassesGroupService {
     'BOOKED/CLASSES',
     async (alunoId: number) => {
       let response = await api.get<IClass[]>(`${alunoId}`);
-      response.data = BookedMock;
+      response.data = [...BookedMock, ...BookedMock, ...BookedMock];
       return response.data;
     },
   );

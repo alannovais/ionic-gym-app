@@ -9,6 +9,7 @@ import {
   IonTitle,
   IonToolbar,
   useIonAlert,
+  useIonToast,
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
@@ -19,7 +20,6 @@ import { ClassesGroupService } from '../../services/ClassesGroupService';
 import { TeacherService } from '../../services/TeacherService';
 import { RootState } from '../../store';
 import { AppDispatch } from '../../store/store';
-import '../../theme/variables.scss';
 import { ITeacher } from '../../interfaces';
 
 interface ComponentProps {}
@@ -37,6 +37,7 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
     teacher: ITeacher;
     classObj: IClass;
   }>();
+  const [present] = useIonToast();
 
   React.useEffect(() => {
     dispatch(ClassesGroupService.get());
@@ -48,11 +49,6 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
     setClearFields(false);
     callFilterService();
   }, [clearFields, filtering]);
-
-  const classPresence = (id: number) => {
-    console.log(id);
-    //Todo dispatch the event
-  };
 
   const onHandleTeacherSelected = (teacher: ITeacher) => {
     setFiltering({
@@ -79,21 +75,44 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
 
   const setupPresence = (data: IClass) => {
     presentAlert({
-      header: 'Agendamento da aula',
+      header: 'Agendar aula',
       subHeader: `Confirmar sua presença na aula?`,
       message: `${data.name} - ${data.start_at} - ${data.end_at}`,
       buttons: [
-        { text: 'Sim', handler: () => classPresence(data.id) },
-        { text: 'Não', handler: () => console.log('Não') },
+        { text: 'Sim', handler: () => onClassPresence(data) },
+        { text: 'Não', handler: () => undefined },
       ],
     });
   };
+
+  const onClassPresence = (id: IClass) => {
+    try {
+      //open spinning 
+      //call Api and remove the reservation
+      present({
+        message: `Aula reservada, até logo!`,
+        duration: 5000,
+        position: 'bottom',
+        color: 'success',
+      });
+    } catch {
+      present({
+        message: `Algo aconteceu, por favor tente novamente!`,
+        duration: 5000,
+        position: 'bottom',
+        color: 'danger',
+      });
+    } finally {
+      //end spinning
+    }
+  };
+
   return (
     <IonPage>
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle class="text-header-semibold">Agendar aula</IonTitle>
+            <IonTitle class="text-header-semibold font-main-color">Agendar aula</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid>

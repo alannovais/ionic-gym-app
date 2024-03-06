@@ -32,19 +32,23 @@ import '@ionic/react/css/text-transformation.css';
 import {
   barbellOutline,
   bookmarkOutline,
+  ellipsisVerticalOutline,
   homeOutline,
-  mailOutline,
-  timerOutline,
 } from 'ionicons/icons';
-import Evolution from './pages/evolution/Evolution';
 import ScheduleClass from './pages/group-class/ScheduleClass';
-import History from './pages/history/History';
-import Messages from './pages/messages/Messages';
+import Evolution from './pages/hub-page/evolution/Evolution';
+
+import { HubPage } from './pages/hub-page/HubPage';
+import { PageNotFound } from './pages/not-found/PageNotFound';
 import ChangePassword from './pages/password/ChangePassword';
 import Payments from './pages/payments/Payments';
 import Profile from './pages/profile/Profile';
+import { PersonalData } from './pages/profile/personal-data/PersonalData';
 import Routine from './pages/routine/Routine';
-import Shopping from './pages/shopping/Shopping';
+
+import History from './pages/hub-page/history/History';
+import Messages from './pages/hub-page/messages/Messages';
+import Shopping from './pages/hub-page/shopping/Shopping';
 import Workout from './pages/workout/Workout';
 import './theme/variables.scss';
 
@@ -56,49 +60,49 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/home" component={Home} />
-          <Route exact path="/history" component={History} />
-          <Route exact path="/workout" component={Workout} />
-          <Route exact path="/payments" component={Payments} />
-          <Route exact path="/shopping" component={Shopping} />
-          <Route exact path="/messages" component={Messages} />
           <Route exact path="/schedule" component={ScheduleClass} />
-          <Route exact path="/evolution" component={Evolution} />
-          <Route exact path="/profile" component={Profile} />
           <Route exact path="/change-password" component={ChangePassword} />
-          <Route exact path="/workout/routine/:id" component={Routine} />
+
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile/:id" component={PersonalData} />
+          <Route exact path="/profile/:id/payments" component={Payments} />
+
+          <Route exact path="/workout" component={Workout} />
+          <Route exact path="/workout/:id/routine" component={Routine} />
+
+          <Route exact path="/hub-place" component={HubPage} />
+          <Route exact path="/hub-place/evolution" component={Evolution} />
+          <Route exact path="/hub-place/messages" component={Messages} />
+          <Route exact path="/hub-place/history" component={History} />
+          <Route exact path="/hub-place/shopping" component={Shopping} />
+
           <Route exact path="/">
             <Redirect to="/home" />
+          </Route>
+          <Route exact path="/not-found" component={PageNotFound} />
+          <Route>
+            <Redirect to="/not-found" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="home" href="/home">
             <IonIcon icon={homeOutline} />
-            <IonLabel class="text-action">Ginásio</IonLabel>
+            <IonLabel class="text-action font-main-shadow-color">Ginásio</IonLabel>
           </IonTabButton>
 
           <IonTabButton tab="workout" href="/workout">
             <IonIcon icon={barbellOutline} />
-            <IonLabel class="text-action">Treino</IonLabel>
+            <IonLabel class="text-action font-main-shadow-color">Treino</IonLabel>
           </IonTabButton>
 
           <IonTabButton tab="evolution" href="/schedule">
             <IonIcon icon={bookmarkOutline} />
-            <IonLabel class="text-action">Agendar</IonLabel>
+            <IonLabel class="text-action font-main-shadow-color">Agendar</IonLabel>
           </IonTabButton>
 
-          {/* <IonTabButton tab="evolution" href="/evolution">
-            <IonIcon icon={statsChartOutline} />
-            <IonLabel class='text-action'>Evolução</IonLabel>
-          </IonTabButton> */}
-
-          <IonTabButton tab="history" href="/history">
-            <IonIcon icon={timerOutline} />
-            <IonLabel class='text-action'>Histórico</IonLabel>
-          </IonTabButton>
-
-          <IonTabButton tab="messages" href="/messages">
-            <IonIcon icon={mailOutline} />
-            <IonLabel class="text-action">Menssagens</IonLabel>
+          <IonTabButton tab="hub" href="/hub-place">
+            <IonIcon icon={ellipsisVerticalOutline} />
+            <IonLabel class="text-action font-main-shadow-color">Hub</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

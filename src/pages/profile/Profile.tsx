@@ -17,7 +17,6 @@ import { useHistory } from 'react-router';
 import { TypedUseSelectorHook } from 'react-redux';
 import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
-import '../../theme/variables.scss';
 
 const Profile: React.FC = () => {
   const history = useHistory();
@@ -68,7 +67,15 @@ const Profile: React.FC = () => {
                   button
                   onClick={(e) => {
                     e.preventDefault();
-                    history.push('/payments');
+                    history.push(`/profile/${user.id}`);
+                  }}>
+                  <IonLabel class="text-secondary">Dados Pessoais</IonLabel>
+                </IonItem>
+                <IonItem
+                  button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    history.push(`/profile/${user.id}/payments`);
                   }}>
                   <IonLabel class="text-secondary">
                     Hístorico de pagamentos

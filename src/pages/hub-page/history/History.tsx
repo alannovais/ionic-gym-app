@@ -7,12 +7,11 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import MonthComponent from '../../components/history/MonthComponent';
-import { HistoryService } from '../../services/HistoryService';
-import { RootState } from '../../store';
-import { AppDispatch } from '../../store/store';
-import '../../theme/variables.scss';
-import { getMonth } from '../../helpers/MomentParses';
+import { RootState } from '../../../store';
+import { AppDispatch } from '../../../store/store';
+import { HistoryService } from '../../../services';
+import MonthComponent from '../../../components/history/MonthComponent';
+import { getMonth } from '../../../helpers/MomentParses';
 
 const History: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;

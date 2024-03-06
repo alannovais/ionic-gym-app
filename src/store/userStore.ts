@@ -1,14 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IUser } from '../interfaces';
 
 interface UserStore {
-  data: {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-    role: string;
-    token: string;
-  };
+  data: IUser;
   loading: boolean;
   error: string | null;
 }
@@ -18,10 +12,10 @@ const initialState: UserStore = {
     id: 0,
     name: 'Alan Novais',
     email: '',
-    password: 'teste123',
     role: '',
     token: '',
-  },
+    company: 1,
+  } as IUser,
   loading: false,
   error: null,
 };

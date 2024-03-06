@@ -10,6 +10,7 @@ import PaymentReducer from './paymentStore';
 import SalesReducer from './shoppingStore';
 import UserReducer from './userStore';
 import BookedReducer from './bookedStore';
+import companyReducer from './companyStore';
 
 const rootReducer = combineReducers({
   messages: MessageReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   payments: PaymentReducer,
   sales: SalesReducer,
   user: UserReducer,
-  bookedClasses: BookedReducer
+  bookedClasses: BookedReducer,
+  company: companyReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
