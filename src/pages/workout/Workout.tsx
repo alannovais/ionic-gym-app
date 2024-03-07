@@ -1,4 +1,4 @@
-import { IonCol, IonContent, IonGrid, IonPage, IonRow } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { SwipperWorkoutComponent } from '../../components';
