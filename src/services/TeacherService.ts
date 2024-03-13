@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ITeacher } from '../interfaces';
-import { TeachersMock } from '../mocks/TeachersMock';
+import { ITeacher } from '@/interfaces';
+import { TeachersMock } from '@/mocks/TeachersMock';
 import api from './api';
 
 export namespace TeacherService {

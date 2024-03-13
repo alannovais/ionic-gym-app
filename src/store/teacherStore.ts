@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ITeacher } from '../interfaces';
-import { TeacherService } from '../services';
+import { ITeacher } from '@/interfaces';
+import { TeacherService } from '@/services';
 
 interface TeacherStore {
   data: ITeacher[];

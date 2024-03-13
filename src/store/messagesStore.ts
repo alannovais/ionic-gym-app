@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IMessage } from '../interfaces';
-import { MessageService } from '../services';
+import { IMessage } from '@/interfaces';
+import { MessageService } from '@/services';
 
 interface MessageStore {
   data: IMessage[];

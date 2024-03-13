@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ICompany } from "../interfaces";
-import { CompanyService } from "../services/CompanyService";
+import { ICompany } from "@/interfaces";
+import { CompanyService } from "@/services/CompanyService";
 
 interface store {
     data: ICompany;

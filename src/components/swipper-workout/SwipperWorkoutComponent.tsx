@@ -1,3 +1,4 @@
+import { IPlan } from '@/interfaces';
 import {
   IonCard,
   IonCardHeader,
@@ -12,7 +13,7 @@ import {
   Pagination,
 } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { IPlan } from '../../interfaces';
+
 
 interface ComponentProps {
   weekDays: string[];

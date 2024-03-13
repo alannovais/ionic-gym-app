@@ -1,4 +1,4 @@
-import { IPayments } from '../interfaces';
+import { IPayments } from '@/interfaces';
 
 export const PaymentsMock: IPayments[] = [
   {

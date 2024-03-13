@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IPayments } from '../interfaces';
-import { PaymentsMock } from '../mocks/PaymentsMock';
+import { IPayments } from '@/interfaces';
+import { PaymentsMock } from '@/mocks/PaymentsMock';
 import api from './api';
 
 export namespace PaymentsService {

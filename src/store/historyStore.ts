@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IHistoryDay } from '../interfaces';
-import { HistoryService } from '../services';
+import { IHistoryDay } from '@/interfaces';
+import { HistoryService } from '@/services';
 
 interface HistoryStore {
   data: IHistoryDay[];

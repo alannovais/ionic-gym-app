@@ -3,7 +3,6 @@ import {
   IonCard,
   IonCardContent,
   IonCardHeader,
-  IonCardSubtitle,
   IonCardTitle,
   IonCol,
   IonContent,
@@ -13,16 +12,17 @@ import {
   IonPage,
   IonRow,
   useIonAlert,
-  useIonToast,
+  useIonToast
 } from '@ionic/react';
 import { bagAddOutline } from 'ionicons/icons';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import teste from '../../group-class/teste.jpg';
-import { AppDispatch } from '../../../store/store';
-import { RootState } from '../../../store';
-import { SalesService } from '../../../services';
+import { SalesService } from '@/services';
+import { RootState } from '@/store';
+import { AppDispatch } from '@/store/store';
+import teste from '@/pages/group-class/teste.jpg';
+
 
 const Shopping: React.FC<any> = () => {
   const dispatch = useDispatch<AppDispatch>();

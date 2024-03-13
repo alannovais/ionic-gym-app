@@ -16,9 +16,10 @@ import {
 } from '@ionic/react';
 import { useState } from 'react';
 import { TypedUseSelectorHook } from 'react-redux';
-import { RootState } from '../../store';
-import { useSelector } from 'react-redux';
+
+import { RootState } from '@/store';
 import { eye, eyeOutline, lockClosedOutline } from 'ionicons/icons';
+import { useSelector } from 'react-redux';
 import './ChangePassword.scss';
 
 const ChangePassword: React.FC = () => {

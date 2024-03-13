@@ -1,4 +1,4 @@
-@import '../../theme/variables.scss';
+@import '@/theme/variables.scss';
 
 .dawn-color {
     background: linear-gradient(360deg, $main-color, $main-as-shadow, #fff);

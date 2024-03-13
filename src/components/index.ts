@@ -1,9 +1,12 @@
-export * from './advertisings/AdvertisingsComponent';
-export * from './filters/FilterClassComponent';
-export * from './history/MonthComponent';
-export * from './list-class/ListClassComponent';
-export * from './profile/ProfileComponent';
-export * from './swipper-workout/SwipperWorkoutComponent';
-export * from './upcoming-classes/UpComingClassesComponent';
-export * from './workout/WorkoutDayComponent';
-
+export { AdvertisingsComponent } from "./advertisings/AdvertisingsComponent";
+export { FilterClassComponent } from "./filters/FilterClassComponent";
+export { default as MonthComponent } from "./history/MonthComponent";
+export { ListClassComponent } from "./list-class/ListClassComponent";
+export { ProfileComponent } from "./profile/ProfileComponent";
+export {
+	SwipperWorkoutComponent
+} from "./swipper-workout/SwipperWorkoutComponent";
+export {
+	UpComingClassesComponent
+} from "./upcoming-classes/UpComingClassesComponent";
+export { default as WorkoutDayComponent } from "./workout/WorkoutDayComponent";

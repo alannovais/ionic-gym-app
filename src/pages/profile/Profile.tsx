@@ -12,10 +12,11 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import './Porfile.scss';
-import { useHistory } from 'react-router';
 import { TypedUseSelectorHook } from 'react-redux';
-import { RootState } from '../../store';
+import { useHistory } from 'react-router';
+import './Porfile.scss';
+
+import { RootState } from '@/store';
 import { useSelector } from 'react-redux';
 
 const Profile: React.FC = () => {

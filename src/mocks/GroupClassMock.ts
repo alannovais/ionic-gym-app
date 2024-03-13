@@ -1,4 +1,4 @@
-import { IClass } from '../interfaces/IClass';
+import { IClass } from '@/interfaces/IClass';
 
 export const ClassesMock: IClass[] = [
   {

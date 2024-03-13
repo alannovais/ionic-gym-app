@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IPlan } from '../interfaces';
-import { PlanService } from '../services';
+import { IPlan } from '@/interfaces';
+import { PlanService } from '@/services';
 
 interface planStore {
   data: IPlan[];

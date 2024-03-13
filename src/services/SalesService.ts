@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ISaleItems } from '../interfaces';
-import { SalesMock } from '../mocks/SalesMock';
+import { ISaleItems } from '@/interfaces';
+import { SalesMock } from '@/mocks/SalesMock';
 import api from './api';
 
 export namespace SalesService {

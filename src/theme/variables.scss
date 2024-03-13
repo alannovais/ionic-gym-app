@@ -2,29 +2,36 @@ $main-color: #7ec57e;
 $main-as-shadow: rgba(106, 197, 106, 10);
 $background-app: #f8f8fc;
 
+ion-tab-bar {
+  --background: #{$background-app};
+}
 
-// ion-list {
-//   background-color: red;
-// } doesnt work 
+ion-item {
+  --background: #{$background-app};
+}
 
 ion-icon {
   color: $main-color;
 }
 
 ion-select {
-  color: $main-color
+  color: $main-color;
 }
 
 ion-content {
   --background: #{$background-app};
 }
 
+.custom-header {
+  --background: red;
+}
+
 .font-main-color {
-  color: $main-color
+  color: $main-color;
 }
 
 .font-main-shadow-color {
-  color: $main-as-shadow
+  color: $main-as-shadow;
 }
 
 .text-action {
@@ -57,6 +64,10 @@ ion-content {
 
 .tab-selected {
   color: $main-color;
+}
+
+.list-ios {
+  background: $background-app;
 }
 
 :host {
@@ -217,7 +228,6 @@ ion-content {
   .ios body {
     --ion-background-color: #000000;
     --ion-background-color-rgb: 0, 0, 0;
-
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255, 255, 255;
 

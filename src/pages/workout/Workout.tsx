@@ -1,11 +1,12 @@
+import { SwipperWorkoutComponent } from '@/components';
+import { WeekDays } from '@/constants/Contants';
+import { PlanService } from '@/services';
+import { RootState } from '@/store';
+import { AppDispatch } from '@/store/store';
 import { IonContent, IonPage } from '@ionic/react';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { SwipperWorkoutComponent } from '../../components';
-import { WeekDays } from '../../constants/Contants';
-import { PlanService } from '../../services/PlanService';
-import { RootState } from '../../store';
-import { AppDispatch } from '../../store/store';
+
 
 const Workout: React.FC = () => {
   const weekDays = React.useRef(WeekDays);

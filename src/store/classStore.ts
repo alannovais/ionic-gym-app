@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IClass } from '../interfaces';
-import { ClassesGroupService } from '../services';
+import { IClass } from '@/interfaces';
+import { ClassesGroupService } from '@/services';
 
 interface ClassStore {
   data: IClass[];

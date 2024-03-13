@@ -3,20 +3,22 @@ import {
   IonHeader,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from '@ionic/react';
 import '@ionic/react/css/ionic-swiper.css';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import 'swiper/css';
-import { UpComingClassesComponent } from '../components';
-import AdvertisingsComponent from '../components/advertisings/AdvertisingsComponent';
-import { ProfileComponent } from '../components/profile/ProfileComponent';
-import { ClassesGroupService } from '../services';
-import { RootState } from '../store';
-import { AppDispatch } from '../store/store';
+
 import './Home.scss';
-import { CompanyService } from '../services/CompanyService';
+
+
+
+import { AdvertisingsComponent, ProfileComponent, UpComingClassesComponent } from '@/components';
+import { ClassesGroupService, CompanyService } from '@/services';
+import { RootState } from '@/store';
+import { AppDispatch } from '@/store/store';
+
 
 const Home: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;
@@ -33,10 +35,12 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen className='app-theme'>
+      <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle class="text-card-title font-main-color">Company name</IonTitle>
+            <IonTitle class="text-card-title font-main-color">
+              Company name
+            </IonTitle>
           </IonToolbar>
         </IonHeader>
         <ProfileComponent />

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IPayments } from '../interfaces';
-import { PaymentsService } from '../services';
+import { IPayments } from '@/interfaces';
+import { PaymentsService } from '@/services';
 
 interface PaymentStore {
   data: IPayments[];

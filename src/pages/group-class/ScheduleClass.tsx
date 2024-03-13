@@ -1,5 +1,11 @@
+import { FilterClassComponent, ListClassComponent } from '@/components';
+import { IClass, ITeacher } from '@/interfaces';
+import { ClassesGroupService, TeacherService } from '@/services';
+import { RootState } from '@/store';
+import { AppDispatch } from '@/store/store';
 import {
   IonButton,
+  IonCol,
   IonContent,
   IonGrid,
   IonHeader,
@@ -14,13 +20,7 @@ import {
 import { closeOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { FilterClassComponent, ListClassComponent } from '../../components';
-import { IClass } from '../../interfaces/IClass';
-import { ClassesGroupService } from '../../services/ClassesGroupService';
-import { TeacherService } from '../../services/TeacherService';
-import { RootState } from '../../store';
-import { AppDispatch } from '../../store/store';
-import { ITeacher } from '../../interfaces';
+
 
 interface ComponentProps {}
 
@@ -87,7 +87,7 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
 
   const onClassPresence = (id: IClass) => {
     try {
-      //open spinning 
+      //open spinning
       //call Api and remove the reservation
       present({
         message: `Aula reservada, até logo!`,
@@ -111,32 +111,42 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
     <IonPage>
       <IonContent scrollY>
         <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle class="text-header-semibold font-main-color">Agendar aula</IonTitle>
+          <IonToolbar class="custom-toolbar">
+            <IonTitle class="text-header-semibold font-main-color">
+              Agendar aula
+            </IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid>
-          <IonRow class="ion-justify-content-around">
-            <FilterClassComponent
-              label={'Professores'}
-              value={teachersFilter}
-              clearFields={clearFields}
-              selectedValue={onHandleTeacherSelected}
-            />
-            <FilterClassComponent
-              label={'Aulas'}
-              value={classesFilter}
-              clearFields={clearFields}
-              selectedValue={onHandleClassSelected}
-            />
-            <IonButton
-              fill="clear"
-              onClick={(e) => {
-                e.preventDefault();
-                clearFilters();
-              }}>
-              <IonIcon icon={closeOutline}></IonIcon>
-            </IonButton>
+          <IonRow
+            class="ion-justify-content-center ion-align-items-center"
+            style={{ width: '95vw' }}>
+            <IonCol size="5">
+              <FilterClassComponent
+                label={'Professores'}
+                value={teachersFilter}
+                clearFields={clearFields}
+                selectedValue={onHandleTeacherSelected}
+              />
+            </IonCol>
+            <IonCol size="5">
+              <FilterClassComponent
+                label={'Aulas'}
+                value={classesFilter}
+                clearFields={clearFields}
+                selectedValue={onHandleClassSelected}
+              />
+            </IonCol>
+            <IonCol size="1">
+              <IonButton
+                fill="clear"
+                onClick={(e) => {
+                  e.preventDefault();
+                  clearFilters();
+                }}>
+                <IonIcon icon={closeOutline}></IonIcon>
+              </IonButton>
+            </IonCol>
           </IonRow>
           {/* <IonDatetime presentation="date-time" preferWheel={true}></IonDatetime> */}
           <ListClassComponent classes={classes} setupPresence={setupPresence} />

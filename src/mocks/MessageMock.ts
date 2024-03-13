@@ -1,4 +1,4 @@
-import { IMessage } from '../interfaces';
+import { IMessage } from '@/interfaces';
 
 export const MessageMock: IMessage[] = [
   {

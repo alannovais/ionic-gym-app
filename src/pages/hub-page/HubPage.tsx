@@ -26,7 +26,7 @@ import {
 import React from 'react';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { RootState } from '../../store';
+import { RootState } from 'store';
 
 export const HubPage: React.FC<any> = () => {
   const history = useHistory();
@@ -38,7 +38,9 @@ export const HubPage: React.FC<any> = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle class="text-header-semibold font-main-color">Hub</IonTitle>
+            <IonTitle class="text-header-semibold font-main-color">
+              Hub
+            </IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid>
@@ -165,7 +167,7 @@ export const HubPage: React.FC<any> = () => {
                       Site
                     </IonLabel>
                     <IonLabel slot="end">
-                      {company.socialMidia.site?.name}
+                      {company.socialMidia.site?.url}
                     </IonLabel>
                   </IonItem>
                 )}

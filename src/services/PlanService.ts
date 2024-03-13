@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IPlan } from '../interfaces';
-import { WorkoutDayMock } from '../mocks/WorkoutDayMock';
+import { IPlan } from '@/interfaces';
+import { WorkoutDayMock } from '@/mocks/WorkoutDayMock';
 import api from './api';
 
 export namespace PlanService {

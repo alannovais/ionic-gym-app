@@ -40,17 +40,19 @@ import Evolution from './pages/hub-page/evolution/Evolution';
 
 import { HubPage } from './pages/hub-page/HubPage';
 import { PageNotFound } from './pages/not-found/PageNotFound';
-import ChangePassword from './pages/password/ChangePassword';
-import Payments from './pages/payments/Payments';
+
+
 import Profile from './pages/profile/Profile';
 import { PersonalData } from './pages/profile/personal-data/PersonalData';
-import Routine from './pages/routine/Routine';
+import Routine from './pages/workout/routine/Routine';
 
 import History from './pages/hub-page/history/History';
 import Messages from './pages/hub-page/messages/Messages';
 import Shopping from './pages/hub-page/shopping/Shopping';
 import Workout from './pages/workout/Workout';
 import './theme/variables.scss';
+import ChangePassword from './pages/profile/password/ChangePassword';
+import Payments from './pages/payments/Payments';
 
 setupIonicReact();
 

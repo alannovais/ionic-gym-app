@@ -1,6 +1,7 @@
-import { IonItem, IonList, IonSelect, IonSelectOption } from '@ionic/react';
+import { IClass, ITeacher } from '@/interfaces';
+import { IonSelect, IonSelectOption } from '@ionic/react';
 import React from 'react';
-import { IClass, ITeacher } from '../../interfaces';
+
 
 const compareWith = (o1: ITeacher | IClass, o2: ITeacher | IClass) => {
   if (!o1 || !o2) {
@@ -27,29 +28,26 @@ export const FilterClassComponent: React.FC<ParamsProps> = (props) => {
 
   React.useEffect(() => {
     console.log(clearFields);
-    
-    if(clearFields) setSelected(undefined);
-  }, [clearFields])
+
+    if (clearFields) setSelected(undefined);
+  }, [clearFields]);
 
   const selectedFilter = (data: CustomEvent) => {
     setSelected(data.detail.value);
     selectedValue !== undefined && selectedValue(data.detail.value);
-  }
+  };
 
   return (
-    <IonList>
-      <IonItem>
-        <IonSelect
-          placeholder={label}
-          onIonChange={selectedFilter}
-          value={selected}>
-          {value.map((item) => (
-            <IonSelectOption key={item.id} value={item}>
-              {item.name}
-            </IonSelectOption>
-          ))}
-        </IonSelect>
-      </IonItem>
-    </IonList>
+    <IonSelect
+      className="custom-ion-select"
+      placeholder={label}
+      onIonChange={selectedFilter}
+      value={selected}>
+      {value.map((item) => (
+        <IonSelectOption key={item.id} value={item}>
+          {item.name}
+        </IonSelectOption>
+      ))}
+    </IonSelect>
   );
 };

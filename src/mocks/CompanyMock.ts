@@ -1,4 +1,4 @@
-import { ICompany } from '../interfaces';
+import { ICompany } from '@/interfaces';
 
 export const CompanyMock: ICompany = {
   id: 1,
@@ -19,7 +19,7 @@ export const CompanyMock: ICompany = {
     },
     whatsapp: {
       name: 'Whatsapp',
-      phone: '123456789',
+      phone: '+351 911 611 411',
       url: 'https://www.whatsapp.com',
     },
     site: {

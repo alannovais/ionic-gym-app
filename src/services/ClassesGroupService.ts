@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IBookedClass, IClass } from '../interfaces';
-import { ClassesMock } from '../mocks/GroupClassMock';
-import { BookedMock } from '../mocks/BookedMock';
+import { IBookedClass, IClass } from '@/interfaces';
+import { ClassesMock } from '@/mocks/GroupClassMock';
+import { BookedMock } from '@/mocks/BookedMock';
 import api from './api';
 
 export namespace ClassesGroupService {

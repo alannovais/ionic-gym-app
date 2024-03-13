@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ISaleItems } from '../interfaces';
-import { SalesService } from '../services';
+import { ISaleItems } from '@/interfaces';
+import { SalesService } from '@/services';
 
 interface ShoppingStore {
   data: ISaleItems[];

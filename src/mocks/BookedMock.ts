@@ -1,4 +1,4 @@
-import { IClass } from '../interfaces';
+import { IClass } from '@/interfaces';
 
 export const BookedMock: IClass[] = [
   {

@@ -1,4 +1,4 @@
-import { IHistoryDay } from '../interfaces';
+import { IHistoryDay } from '@/interfaces';
 
 const currentDate = new Date().toLocaleDateString();
 

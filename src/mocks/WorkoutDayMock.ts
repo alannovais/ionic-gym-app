@@ -1,5 +1,5 @@
-import { WeekDays } from '../constants/Contants';
-import { IPlan } from '../interfaces';
+import { WeekDays } from '@/constants/Contants';
+import { IPlan } from '@/interfaces';
 
 export const WorkoutDayMock: IPlan[] = [
   {

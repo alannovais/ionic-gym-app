@@ -1,4 +1,4 @@
-import { ITeacher } from '../interfaces';
+import { ITeacher } from '@/interfaces';
 
 export const TeachersMock: ITeacher[] = [
   {

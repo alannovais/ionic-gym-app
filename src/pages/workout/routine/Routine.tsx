@@ -1,3 +1,7 @@
+import { WorkoutDayComponent } from '@/components';
+import { WorkoutService } from '@/services';
+import { RootState } from '@/store';
+import { AppDispatch } from '@/store/store';
 import {
   IonButton,
   IonCard,
@@ -6,9 +10,7 @@ import {
   IonContent,
   IonGrid,
   IonHeader,
-  IonItem,
   IonLabel,
-  IonList,
   IonPage,
   IonRow,
   IonTitle,
@@ -18,11 +20,9 @@ import {
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router';
-import WorkoutDayComponent from '../../components/workout/WorkoutDayComponent';
-import { WorkoutService } from '../../services/WorkoutService';
-import { RootState } from '../../store';
-import { AppDispatch } from '../../store/store';
 import './Routine.scss';
+
+
 
 const Routine: React.FC = () => {
   const route = useRouteMatch();
@@ -67,7 +67,7 @@ const Routine: React.FC = () => {
   return (
     <IonPage>
       <IonContent scrollY>
-        <IonHeader collapse="condense">
+        <IonHeader collapse="condense" class="custom-header">
           <IonToolbar>
             <IonTitle class="text-header-semibold font-main-color">{`${loadRoutine.dayDefined} - ${loadRoutine.name}`}</IonTitle>
           </IonToolbar>
@@ -86,7 +86,7 @@ const Routine: React.FC = () => {
                 </IonRow>
 
                 {loadRoutine.routine.map((routine, rIndex) => (
-                  <div>
+                  <div key={rIndex}>
                     <IonCol>
                       <IonLabel class="text-header-semibold">
                         {routine.muscle}

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IMessage } from '../interfaces';
-import { MessageMock } from '../mocks/MessageMock';
+import { IMessage } from '@/interfaces';
+import { MessageMock } from '@/mocks/MessageMock';
 import api from './api';
 
 export namespace MessageService {

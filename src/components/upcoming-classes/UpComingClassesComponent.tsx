@@ -1,15 +1,14 @@
 import {
   IonCard,
   IonCardContent,
-  IonItem,
   IonLabel,
-  IonList,
   IonRow,
   useIonAlert,
-  useIonToast,
+  useIonToast
 } from '@ionic/react';
 import React from 'react';
-import { IClass } from '../../interfaces';
+
+import { IClass } from '@/interfaces';
 import './UpCommingClasses.scss';
 
 interface ComponentProps {
@@ -54,7 +53,7 @@ export const UpComingClassesComponent: React.FC<ComponentProps> = (props) => {
       //end spinning
     }
   };
-
+  
   return (
     <>
       {classes !== undefined && (

@@ -6,4 +6,5 @@ export * from './PlanService';
 export * from './SalesService';
 export * from './TeacherService';
 export * from './WorkoutService';
+export * from './CompanyService';
 

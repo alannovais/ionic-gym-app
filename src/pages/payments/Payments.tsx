@@ -1,3 +1,7 @@
+import { formatDate } from '@/helpers/MomentParses';
+import { PaymentsService } from '@/services';
+import { RootState } from '@/store';
+import { AppDispatch } from '@/store/store';
 import {
   IonContent,
   IonHeader,
@@ -11,10 +15,6 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { PaymentsService } from '../../services/PaymentsService';
-import { RootState } from '../../store';
-import { AppDispatch } from '../../store/store';
-import { formatDate } from '../../helpers/MomentParses';
 
 const Payments: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;

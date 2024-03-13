@@ -1,3 +1,6 @@
+import { MessageService } from '@/services';
+import { RootState } from '@/store';
+import { AppDispatch } from '@/store/store';
 import {
     IonContent,
     IonGrid,
@@ -16,9 +19,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../../store/store';
-import { RootState } from '../../../store';
-import { MessageService } from '../../../services';
+
 
 
 const Messages: React.FC = () => {

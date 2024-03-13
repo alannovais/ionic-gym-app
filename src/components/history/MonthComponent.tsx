@@ -1,6 +1,7 @@
+import { formatDate } from '@/helpers/MomentParses';
+import { IDayAccessType } from '@/interfaces';
 import { IonCol, IonItem, IonLabel, IonRow } from '@ionic/react';
-import { formatDate } from '../../helpers/MomentParses';
-import { IDayAccessType } from '../../interfaces';
+
 
 const MonthComponent: React.FC<{ month: IDayAccessType[] }> = (props) => {
   const { month } = props;

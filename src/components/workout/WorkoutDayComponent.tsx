@@ -1,5 +1,6 @@
+import { IExercise } from '@/interfaces';
 import { IonCheckbox, IonCol, IonGrid, IonLabel, IonRow } from '@ionic/react';
-import { IExercise } from '../../interfaces';
+
 
 interface ContainerProps {
   exerciseList: IExercise[];

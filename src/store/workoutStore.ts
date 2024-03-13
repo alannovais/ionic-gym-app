@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IPlan } from '../interfaces';
-import { WorkoutService } from '../services';
+import { IPlan } from '@/interfaces';
+import { WorkoutService } from '@/services';
 
 interface workoutStore {
   data: IPlan;

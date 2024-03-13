@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from './api';
-import { ICompany } from '../interfaces';
-import { CompanyMock } from '../mocks/CompanyMock';
+import { ICompany } from '@/interfaces';
+import { CompanyMock } from '@/mocks/CompanyMock';
 
 export namespace CompanyService {
   export const get = createAsyncThunk('GET/COMPANY', async (id: number) => {
