@@ -2,7 +2,6 @@ import { IClass, ITeacher } from '@/interfaces';
 import { IonSelect, IonSelectOption } from '@ionic/react';
 import React from 'react';
 
-
 const compareWith = (o1: ITeacher | IClass, o2: ITeacher | IClass) => {
   if (!o1 || !o2) {
     return o1 === o2;
@@ -38,16 +37,23 @@ export const FilterClassComponent: React.FC<ParamsProps> = (props) => {
   };
 
   return (
-    <IonSelect
-      className="custom-ion-select"
-      placeholder={label}
-      onIonChange={selectedFilter}
-      value={selected}>
-      {value.map((item) => (
-        <IonSelectOption key={item.id} value={item}>
-          {item.name}
-        </IonSelectOption>
-      ))}
-    </IonSelect>
+    <div
+      style={{
+        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+        borderRadius: '0.5rem',
+      }}>
+      <IonSelect
+        className="custom-ion-select"
+        style={{marginLeft: '1rem'}}
+        placeholder={label}
+        onIonChange={selectedFilter}
+        value={selected}>
+        {value.map((item) => (
+          <IonSelectOption key={item.id} value={item}>
+            {item.name}
+          </IonSelectOption>
+        ))}
+      </IonSelect>
+    </div>
   );
 };

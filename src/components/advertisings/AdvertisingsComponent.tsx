@@ -49,7 +49,7 @@ export const AdvertisingsComponent: React.FC<ComponentProps> = (props) => {
             borderRadius: '0.5rem',
           }}>
           {Array.from({ length: 10 }).map((item, index) => (
-            <SwiperSlide className="swiper-fixed-width-300">
+            <SwiperSlide key={index} className="swiper-fixed-width-300">
               <IonImg src={teste} />
             </SwiperSlide>
           ))}

@@ -26,11 +26,6 @@ const Profile: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader translucent>
-        <IonToolbar>
-          <IonTitle>Perfil</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>

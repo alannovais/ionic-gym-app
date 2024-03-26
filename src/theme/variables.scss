@@ -6,8 +6,8 @@ ion-tab-bar {
   --background: #{$background-app};
 }
 
-ion-item {
-  --background: #{$background-app};
+ion-badge {
+  background: $main-color;
 }
 
 ion-icon {
@@ -22,8 +22,14 @@ ion-content {
   --background: #{$background-app};
 }
 
+ion-toolbar {
+  --background: #{$background-app} !important;
+  --color: #{$main-color} !important;
+}
+
 .custom-header {
-  --background: red;
+  --background: #{$main-color} !important;
+  --color: #{$background-app} !important;
 }
 
 .font-main-color {
@@ -32,6 +38,10 @@ ion-content {
 
 .font-main-shadow-color {
   color: $main-as-shadow;
+}
+
+.font-invert-color {
+  color: $background-app;
 }
 
 .text-action {
@@ -66,8 +76,13 @@ ion-content {
   color: $main-color;
 }
 
-.list-ios {
-  background: $background-app;
+.loading-setup {
+  --background: transparent;
+  --backdrop-opacity: 25%;
+  --spinner-color: #{$main-as-shadow};
+}
+.color-trash {
+  color: #fff;
 }
 
 :host {

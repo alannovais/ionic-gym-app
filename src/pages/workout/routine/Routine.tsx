@@ -1,4 +1,5 @@
 import { WorkoutDayComponent } from '@/components';
+import { LoadingComponent } from '@/components/loading/LoadingComponent';
 import { WorkoutService } from '@/services';
 import { RootState } from '@/store';
 import { AppDispatch } from '@/store/store';
@@ -21,20 +22,27 @@ import React from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router';
 import './Routine.scss';
-
-
+import Switch from 'react-switch';
 
 const Routine: React.FC = () => {
   const route = useRouteMatch();
   const [workoutCompleted, setWorkoutCompleted] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+
   const [presentAlert] = useIonAlert();
   const dispatch = useDispatch<AppDispatch>();
   const selector: TypedUseSelectorHook<RootState> = useSelector;
   const loadRoutine = selector((state) => state.workouts.data);
 
+  const loadData = async () => {
+    if ('id' in route.params)
+      await dispatch(WorkoutService.getWorkoutDay(route.params.id));
+    setLoading(false);
+  };
+
   React.useEffect(() => {
-    dispatch(WorkoutService.getWorkoutDay(route.params?.id));
-  }, []);
+    loadData();
+  }, [loading]);
 
   const getChekedExercise = (id: number) => {
     //save on store
@@ -67,9 +75,10 @@ const Routine: React.FC = () => {
   return (
     <IonPage>
       <IonContent scrollY>
-        <IonHeader collapse="condense" class="custom-header">
+        <LoadingComponent loading={loading} />
+        <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle class="text-header-semibold font-main-color">{`${loadRoutine.dayDefined} - ${loadRoutine.name}`}</IonTitle>
+            <IonTitle class="text-header-semibold">{`${loadRoutine.dayDefined} - ${loadRoutine.name}`}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonCard>
@@ -77,12 +86,10 @@ const Routine: React.FC = () => {
             <IonCardContent>
               <IonGrid>
                 <IonRow class="ion-justify-content-end">
-                  <IonButton
-                    fill="clear"
-                    onClick={handleFinishWorkout}
-                    className={`toggle-button ${workoutCompleted ? 'on' : 'off'}`}>
-                    {workoutCompleted ? 'ON' : 'OFF'}
-                  </IonButton>
+                  <Switch
+                    onChange={handleFinishWorkout}
+                    checked={workoutCompleted}
+                  />
                 </IonRow>
 
                 {loadRoutine.routine.map((routine, rIndex) => (

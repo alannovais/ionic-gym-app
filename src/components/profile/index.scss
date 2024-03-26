@@ -1,10 +1,14 @@
 @import '@/theme/variables.scss';
 
 .dawn-color {
-    background: linear-gradient(360deg, $main-color, $main-as-shadow, #fff);
-    border-bottom-left-radius: 20rem;
-    border-bottom-right-radius: 20rem;
-    height: 27vh;
+  background: linear-gradient(90deg, $main-color, #fff, $main-as-shadow);
+  border-bottom-right-radius: 6rem;
+  height: 23vh;
+  margin-top: -3vh;
+}
+
+.size-card {
+  height: 20vh;
 }
 ion-card-content {
   background-color: #fff !important;

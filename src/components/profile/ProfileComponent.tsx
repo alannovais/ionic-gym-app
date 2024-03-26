@@ -16,23 +16,23 @@ export const ProfileComponent: React.FC = () => {
 
   return (
     <div
-      className='dawn-color'
+      className="dawn-color"
       onClick={(e) => {
         e.preventDefault();
         history.push('/profile');
       }}>
-      <IonCard style={{ position: 'relative', top: '0.5rem' }}>
-        <IonCardContent>
+      <IonCard className='size-card' style={{ position: 'relative', top: '0.5rem' }}>
+        <IonCardContent style={{ height: '20vh', padding: '0.1rem' }}>
           <IonGrid>
             <IonRow>
-              <IonCol size="4" class='ion-align-self-center'>
+              <IonCol size="4" class="ion-align-self-center">
                 <IonImg
                   style={{ width: '8rem', height: '10rem' }}
                   class="image-profile"
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                 />
               </IonCol>
-              <IonCol class='ion-align-self-center'>
+              <IonCol class="ion-align-self-center">
                 <IonRow>
                   <IonLabel>Quant. Treinos mês: 20</IonLabel>
                 </IonRow>

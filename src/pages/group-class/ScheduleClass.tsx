@@ -1,10 +1,13 @@
 import { FilterClassComponent, ListClassComponent } from '@/components';
+import { LoadingComponent } from '@/components/loading/LoadingComponent';
 import { IClass, ITeacher } from '@/interfaces';
 import { ClassesGroupService, TeacherService } from '@/services';
 import { RootState } from '@/store';
 import { AppDispatch } from '@/store/store';
 import {
   IonButton,
+  IonCard,
+  IonCardContent,
   IonCol,
   IonContent,
   IonGrid,
@@ -20,7 +23,6 @@ import {
 import { closeOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-
 
 interface ComponentProps {}
 
@@ -38,11 +40,17 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
     classObj: IClass;
   }>();
   const [present] = useIonToast();
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const loadData = async () => {
+    await dispatch(ClassesGroupService.get());
+    await dispatch(ClassesGroupService.listClasses());
+    await dispatch(TeacherService.get());
+    setLoading(false);
+  };
 
   React.useEffect(() => {
-    dispatch(ClassesGroupService.get());
-    dispatch(ClassesGroupService.listClasses());
-    dispatch(TeacherService.get());
+    loadData();
   }, []);
 
   React.useEffect(() => {
@@ -110,46 +118,53 @@ const ScheduleClass: React.FC<ComponentProps> = (props) => {
   return (
     <IonPage>
       <IonContent scrollY>
+        <LoadingComponent loading={loading} />
         <IonHeader collapse="condense">
-          <IonToolbar class="custom-toolbar">
-            <IonTitle class="text-header-semibold font-main-color">
-              Agendar aula
-            </IonTitle>
+          <IonToolbar>
+            <IonTitle class="text-header-semibold">Aulas de hoje</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonGrid>
-          <IonRow
-            class="ion-justify-content-center ion-align-items-center"
-            style={{ width: '95vw' }}>
-            <IonCol size="5">
-              <FilterClassComponent
-                label={'Professores'}
-                value={teachersFilter}
-                clearFields={clearFields}
-                selectedValue={onHandleTeacherSelected}
+        <IonGrid style={{ marginBottom: '3vh' }}>
+          <section id='filters' style={{marginBottom: '1rem', position: 'relative', left: '-1rem'}}>
+            <IonRow
+              class="ion-justify-content-center ion-align-items-center"
+              style={{ width: '100vw' }}>
+              <IonCol size="5">
+                <FilterClassComponent
+                  label={'Professores'}
+                  value={teachersFilter}
+                  clearFields={clearFields}
+                  selectedValue={onHandleTeacherSelected}
+                />
+              </IonCol>
+              <IonCol size="5">
+                <FilterClassComponent
+                  label={'Aulas'}
+                  value={classesFilter}
+                  clearFields={clearFields}
+                  selectedValue={onHandleClassSelected}
+                />
+              </IonCol>
+              <IonCol size="1">
+                <IonButton
+                  fill="clear"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    clearFilters();
+                  }}>
+                  <IonIcon icon={closeOutline}></IonIcon>
+                </IonButton>
+              </IonCol>
+            </IonRow>
+          </section>
+          <IonCard style={{ width: '98%', margin: '0 auto' }}>
+            <IonCardContent>
+              <ListClassComponent
+                classes={classes}
+                setupPresence={setupPresence}
               />
-            </IonCol>
-            <IonCol size="5">
-              <FilterClassComponent
-                label={'Aulas'}
-                value={classesFilter}
-                clearFields={clearFields}
-                selectedValue={onHandleClassSelected}
-              />
-            </IonCol>
-            <IonCol size="1">
-              <IonButton
-                fill="clear"
-                onClick={(e) => {
-                  e.preventDefault();
-                  clearFilters();
-                }}>
-                <IonIcon icon={closeOutline}></IonIcon>
-              </IonButton>
-            </IonCol>
-          </IonRow>
-          {/* <IonDatetime presentation="date-time" preferWheel={true}></IonDatetime> */}
-          <ListClassComponent classes={classes} setupPresence={setupPresence} />
+            </IonCardContent>
+          </IonCard>
         </IonGrid>
       </IonContent>
     </IonPage>

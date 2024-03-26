@@ -27,4 +27,5 @@ export const CompanyMock: ICompany = {
       url: 'https://www.site.com',
     },
   },
+  qrcode: 'value',
 };

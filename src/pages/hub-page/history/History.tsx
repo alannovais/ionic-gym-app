@@ -1,4 +1,5 @@
 import { MonthComponent } from '@/components';
+import { LoadingComponent } from '@/components';
 import { getMonth } from '@/helpers/MomentParses';
 import { HistoryService } from '@/services';
 import { RootState } from '@/store';
@@ -11,22 +12,28 @@ import {
   IonListHeader,
   IonPage,
 } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-
 
 const History: React.FC = () => {
   const selector: TypedUseSelectorHook<RootState> = useSelector;
   const history = selector((state) => state.history.data);
   const dispatch = useDispatch<AppDispatch>();
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const loadData = async () => {
+    await dispatch(HistoryService.get());
+    setLoading(false);
+  };
 
   React.useEffect(() => {
-    dispatch(HistoryService.get());
+    loadData();
   }, []);
 
   return (
     <IonPage>
       <IonContent scrollY>
+        <LoadingComponent loading={loading} />
         <IonGrid>
           <IonList>
             {history.map((access, indexAccess) => (

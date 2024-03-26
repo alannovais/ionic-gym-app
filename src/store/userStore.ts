@@ -9,7 +9,7 @@ interface UserStore {
 
 const initialState: UserStore = {
   data: {
-    id: 0,
+    id: 1,
     name: 'Alan Novais',
     email: '',
     role: '',

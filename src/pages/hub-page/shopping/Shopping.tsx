@@ -12,17 +12,17 @@ import {
   IonPage,
   IonRow,
   useIonAlert,
-  useIonToast
+  useIonToast,
 } from '@ionic/react';
 import { bagAddOutline } from 'ionicons/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import { SalesService } from '@/services';
 import { RootState } from '@/store';
 import { AppDispatch } from '@/store/store';
 import teste from '@/pages/group-class/teste.jpg';
-
+import { LoadingComponent } from '@/components';
 
 const Shopping: React.FC<any> = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,10 +30,16 @@ const Shopping: React.FC<any> = () => {
   const itemsToSales = selector((state) => state.sales.data);
   const [presentAlert] = useIonAlert();
   const [present] = useIonToast();
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const loadData = async () => {
+    await dispatch(SalesService.get());
+    setLoading(false);
+  };
 
   React.useEffect(() => {
-    dispatch(SalesService.get());
-  }, [itemsToSales, dispatch]);
+    loadData();
+  }, []);
 
   const onPopUpToBuyItem = (id: Number) => {
     presentAlert({
@@ -81,6 +87,7 @@ const Shopping: React.FC<any> = () => {
   return (
     <IonPage>
       <IonContent scrollY>
+        <LoadingComponent loading={loading} />
         <IonRow>
           {itemsToSales.map((item, index) => (
             <IonCol size="6" key={index}>
